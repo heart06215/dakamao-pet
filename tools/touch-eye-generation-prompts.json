@@ -1,0 +1,7 @@
+{
+  "prompt": "Edit the supplied desktop cat sprite. Change ONLY the two eyes to gently closed relaxed eyelids: a soft almost-horizontal downward/slightly curved lid beneath the EXISTING separate short horizontal eyebrows. No visible blue iris. Do not lift the eyelids into laughing arches, do not add long eyelashes or pointed corners. Keep exact same tilted head pose, mouth fully closed tiny w smile, fat adult body, two forepaws, hair length, gold horn, blue ornaments, thin dark brown outlines, colors, lighting, scale and framing. Transparent RGBA background. Preserve every other part and location as precisely as possible. This is a single closed-eye keyframe for a continuous petting animation.",
+  "outputs": [
+    "tools/keyframes/picture_style/touch_closed_left.png",
+    "tools/keyframes/picture_style/touch_closed_right.png"
+  ]
+}

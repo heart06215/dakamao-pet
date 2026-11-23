@@ -1,0 +1,1242 @@
+{
+  "source_document": "Codex制作指南.md",
+  "date": "2026-09-29",
+  "total_frames": 84,
+  "approved_generated_frames": 31,
+  "generation_route": "built_in_imagegen",
+  "production_strategy": "generated_key_poses_then_reviewed_inbetweens",
+  "workflow_document": "关键帧制作流程.md",
+  "environment_diagnostic": "tools/qa/imagegen-environment.json",
+  "last_tool_error": null,
+  "common_prompt": "外观以 tools/reference.png 为准；动作截图仅参考姿态与表情。生成单只完整角色、真实透明背景、无手与其他物体、无文字；保持金角、蓝色饰物、白色长毛及统一比例。",
+  "resume_rules": [
+    "Do not treat existing file counts as evidence that generation is complete.",
+    "Generate each required action endpoint with imagegen before constructing transition frames.",
+    "For blinking, first generate a genuine closed-eye pose, then make open-to-closed and closed-to-open inbetweens.",
+    "Use tools/reference.png and the listed action reference; preserve character identity and alpha.",
+    "If eye interpolation produces residual irises or doubled eyelids, generate a half-closed key pose and split the transition.",
+    "Track generated key poses separately from derived transition frames; 84 delivery frames do not require 84 independent generations.",
+    "Save generated originals before mechanical resizing; preserve genuine alpha and white fur.",
+    "Review each action contact sheet and transitions, then update that frame's status and sha256.",
+    "Keep frame_NN.png paths; VPet metadata and frame duration are configured by the host.",
+    "Publish with tools/publish.ps1 after importing approved art."
+  ],
+  "frames": [
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_01.png",
+      "original": "tools/originals/default/breathe_b/frame_01.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "3303cd6ae8c9ba236265518ccbff49c0275202fd52f2c114e49965a7b3749702",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "首帧：自然站姿，身体微微下沉压缩，像呼气到底的状态，耳朵自然放松，眼睛睁开。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/open.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_02.png",
+      "original": "tools/originals/default/breathe_b/frame_02.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "eb2f573cd7d7d4fe41cd29be57266eb83197ce761208006ef3eca7680e01d592",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "第2帧：开始吸气，身体微微上升一点，姿态与首帧几乎相同，只有细微起伏。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_03.png",
+      "original": "tools/originals/default/breathe_b/frame_03.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "95e9309cec32c9301022ecf96604bceb40c3dce26c69bb60091e4383dfe7ce9a",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "第3帧：吸气到最满，身体轻轻鼓起，头部略微抬起一点。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_04.png",
+      "original": "tools/originals/default/breathe_b/frame_04.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "95e9309cec32c9301022ecf96604bceb40c3dce26c69bb60091e4383dfe7ce9a",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "第4帧：保持吸满的状态，姿态与第3帧几乎完全相同，只有极细微差别。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_03.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_05.png",
+      "original": "tools/originals/default/breathe_b/frame_05.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "eb2f573cd7d7d4fe41cd29be57266eb83197ce761208006ef3eca7680e01d592",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "第5帧：开始呼气，身体回落下沉，接近首帧的压缩状态。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_02.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_06.png",
+      "original": "tools/originals/default/breathe_b/frame_06.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "3303cd6ae8c9ba236265518ccbff49c0275202fd52f2c114e49965a7b3749702",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "尾帧：回到与首帧完全相同的姿态。（可直接复制 frame_01 改名）",
+      "copy_after_source_approved": "default/breathe_b/frame_01.png",
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png",
+      "original": "tools/originals/touch_head/touch_a/frame_01.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "摸头开始首帧：好像感到头顶被轻轻碰了一下，微微一愣，头略低下，耳朵向后压。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_02.png",
+      "original": "tools/originals/touch_head/touch_a/frame_02.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "开始第2帧：头顶被轻按，眼睛睁大一点，头开始向上顶。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_03.png",
+      "original": "tools/originals/touch_head/touch_a/frame_03.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "31a9df1fb55d85ccb0525b58ac9d5f931abeb5aec94263fec012dfb84af461a8",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "开始第3帧：开始舒服地眯眼，头向上轻轻顶起，脖子伸长一点。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/head_center.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_04.png",
+      "original": "tools/originals/touch_head/touch_a/frame_04.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "d09f0296d7d1a7259b729bfb95e411840770165434b95e13c1817dacb8da0544",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "开始尾帧：眼睛完全眯成舒服的弧线，头顶朝斜上方顶住，嘴角上扬。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/head_left.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_b/frame_01.png",
+      "original": "tools/originals/touch_head/touch_b/frame_01.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "d09f0296d7d1a7259b729bfb95e411840770165434b95e13c1817dacb8da0544",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "摸头循环：闭眼享受，头在斜上方轻轻蹭动——左蹭姿态，头微微偏左。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_04.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_b/frame_02.png",
+      "original": "tools/originals/touch_head/touch_b/frame_02.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "31a9df1fb55d85ccb0525b58ac9d5f931abeb5aec94263fec012dfb84af461a8",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "循环第2帧：回到正中，头顶微顶，闭眼微笑。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_03.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_b/frame_03.png",
+      "original": "tools/originals/touch_head/touch_b/frame_03.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "1758628ec648509bc28fc62bccf0ecba05d7ca0d7b651446f212d0ff9d41d4c1",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "循环第3帧：头微微偏右蹭动，姿态幅度与第1帧对称。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/head_right.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_b/frame_04.png",
+      "original": "tools/originals/touch_head/touch_b/frame_04.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "d09f0296d7d1a7259b729bfb95e411840770165434b95e13c1817dacb8da0544",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "循环尾帧：回到第1帧的偏左蹭动姿态，方便无缝循环。（可直接复制 frame_01 改名）",
+      "copy_after_source_approved": "touch_head/touch_b/frame_01.png",
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_04.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_c/frame_01.png",
+      "original": "tools/originals/touch_head/touch_c/frame_01.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "00a4c8e59264973b3c2c21edb203a4736bc9ebf91b07eef1ae91ed5badb1af8c",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "摸头结束首帧：触碰已经离开，头还保持微微上仰，眼睛缓缓睁开一半。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_c/frame_02.png",
+      "original": "tools/originals/touch_head/touch_c/frame_02.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "结束尾帧：完全回到自然站姿，眼睛睁开，恢复平静表情。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_a/frame_01.png",
+      "original": "tools/originals/touch_body/touch_a/frame_01.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "摸身体开始首帧：后背被轻轻碰到，身体微微一僵，毛微微炸起，眼睛睁大。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_a/frame_02.png",
+      "original": "tools/originals/touch_body/touch_a/frame_02.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "0c6d58f153b3f62bef51bb501d089fa6dff87d598e8b447ae85207b229fe95cc",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "开始第2帧：身体开始放松，背部微微拱起迎合。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/body_intro.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_a/frame_03.png",
+      "original": "tools/originals/touch_body/touch_a/frame_03.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "2695b8c3afb5a64bbc300b59ea8ecd82ab9cf25f2ef25a32e21194ba4862da49",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "开始第3帧：舒服地弓起背，眼睛眯起，尾巴轻轻翘起。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/body_arch.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_a/frame_04.png",
+      "original": "tools/originals/touch_body/touch_a/frame_04.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "2695b8c3afb5a64bbc300b59ea8ecd82ab9cf25f2ef25a32e21194ba4862da49",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "开始尾帧：弓背到最舒服的弧度，眼睛完全眯成线，尾巴翘到最高。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_a/frame_03.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_b/frame_01.png",
+      "original": "tools/originals/touch_body/touch_b/frame_01.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "4cc8c238cf97dcedc18f66f14cd97bdb0641a9e17faac5dc1536721173a61a67",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "摸身体循环：保持弓背，身体整体向左轻轻揉动晃一下。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_b/frame_02.png",
+      "original": "tools/originals/touch_body/touch_b/frame_02.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "2695b8c3afb5a64bbc300b59ea8ecd82ab9cf25f2ef25a32e21194ba4862da49",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "循环第2帧：身体回到正中，弓背姿态。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_a/frame_03.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_b/frame_03.png",
+      "original": "tools/originals/touch_body/touch_b/frame_03.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "472fa0d4457c90b4fedc82365b9ae452d4e8801b90b446a908e64972e11dd894",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "循环第3帧：身体整体向右轻轻揉动晃一下，幅度与第1帧对称。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_b/frame_04.png",
+      "original": "tools/originals/touch_body/touch_b/frame_04.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "4cc8c238cf97dcedc18f66f14cd97bdb0641a9e17faac5dc1536721173a61a67",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "循环尾帧：回到第1帧向左晃的姿态，方便无缝循环。（可直接复制 frame_01 改名）",
+      "copy_after_source_approved": "touch_body/touch_b/frame_01.png",
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_b/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_c/frame_01.png",
+      "original": "tools/originals/touch_body/touch_c/frame_01.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "0c6d58f153b3f62bef51bb501d089fa6dff87d598e8b447ae85207b229fe95cc",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "摸身体结束首帧：弓背慢慢舒展，眼睛睁开一半，尾巴落下一半。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_a/frame_02.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/touch_body/touch_c/frame_02.png",
+      "original": "tools/originals/touch_body/touch_c/frame_02.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "结束尾帧：完全回到自然站姿，恢复平静表情。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/raised_static/hold_a/frame_01.png",
+      "original": "tools/originals/raised_static/hold_a/frame_01.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "8586e80c8c4001618dfbd0dfb0160a8d6d552d97188ab7b9069b9361b319a43c",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "被提起瞬间首帧：整体位置上移到画面中央，四肢悬空微微张开，身体拉长，表情惊讶，眼睛圆睁。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/hold.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/raised_static/hold_a/frame_02.png",
+      "original": "tools/originals/raised_static/hold_a/frame_02.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "aae45c73635c127dc0840e76bc4223f2a00f04d801c312c94d1b0e1f928226fd",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "开始尾帧：悬在半空，四肢开始下垂放松，表情从惊讶转为呆萌。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/raised_static/hold_b/frame_01.png",
+      "original": "tools/originals/raised_static/hold_b/frame_01.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "4a31fc4abaf38a46cb5f1f62cb97b42a996ac0bedc1e8b832993132b290d8dfb",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "悬挂循环：四肢和尾巴轻轻向左晃动，表情认命呆萌。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/raised_static/hold_b/frame_02.png",
+      "original": "tools/originals/raised_static/hold_b/frame_02.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "dd910f85b7b4e994b3dbf5af3f22eb862fc0fd08e5df9ad321339de27a567f6b",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "循环第2帧：四肢和尾巴向右晃动，幅度与第1帧对称，两帧交替形成摆动循环。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/raised_static/hold_c/frame_01.png",
+      "original": "tools/originals/raised_static/hold_c/frame_01.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "d972945533be7b82861791c67faed307cdbcd6fba3ca1f35439dad54f5ea3d6e",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "被放下首帧：身体下降到接近画面底部，四肢伸直准备着地，眼睛看向下方。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/lowered.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/raised_static/hold_c/frame_02.png",
+      "original": "tools/originals/raised_static/hold_c/frame_02.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "2d5317e5c35435c248b1dac209835bdbd42db1d2bd4cb054a2cfa9dc473451a3",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "被放下尾帧：脚底触地瞬间，身体压缩成半蹲缓冲，耳朵向后压。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/raised_dynamic/wiggle_single/frame_01.png",
+      "original": "tools/originals/raised_dynamic/wiggle_single/frame_01.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "b68c8b18e6c2dc62ee673e6a5cca6973a692abcd9d0abc24a1e917d930063a6b",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "被快速左右甩动第1帧：身体向左倾斜拉长，四肢和尾巴甩向右侧，表情夸张一点。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/wiggle_left.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/raised_dynamic/wiggle_single/frame_02.png",
+      "original": "tools/originals/raised_dynamic/wiggle_single/frame_02.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "361ea3bcc678d40199847cefc965c822005d1dc863bb7296cba0b15a0e7f698a",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "甩动第2帧：身体向右倾斜拉长，四肢和尾巴甩向左侧，幅度与第1帧对称。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/wiggle_right.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/common/fall_single/frame_01.png",
+      "original": "tools/originals/common/fall_single/frame_01.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "4d39ab7944c40b681698717cca29bf3dfe14c056fda3334046037fa561989fa4",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "下落首帧：整体位于画面上方，四肢张开，身体微微拉长，表情慌张，毛微微炸起。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/common/fall_single/frame_02.png",
+      "original": "tools/originals/common/fall_single/frame_02.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "ac364d5f25edbfbd1fcf4439ebb186ea16fed2551df7b52a8df82c44dfa97723",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "下落第2帧：位于画面中部，四肢收拢到身前，身体保持拉长，眼睛紧闭。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/common/fall_single/frame_03.png",
+      "original": "tools/originals/common/fall_single/frame_03.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "2d5317e5c35435c248b1dac209835bdbd42db1d2bd4cb054a2cfa9dc473451a3",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "**重重落地**：贴住画面底部，身体被砸得严重压扁成饼状，耳朵向后飞起，脸颊肉被挤压变形，冲击感要强，是整段里压得最扁的一帧。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/impact.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/common/fall_single/frame_04.png",
+      "original": "tools/originals/common/fall_single/frame_04.png",
+      "priority": "core",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "5b2bba926be8a0ebcf6edb9c7448f341c643f3e704b994c1a807fd29eceb73e9",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "**弹起**：身体从压扁状态回弹拉长，底部轻微离地弹起一小截，像果冻一样弹起，表情懵。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/rebound.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/common/fall_single/frame_05.png",
+      "original": "tools/originals/common/fall_single/frame_05.png",
+      "priority": "core",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "705b607cce67dc84c0de4e8bac100b3880d29f6c06f762b54101369eaa04ef4e",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "二次落地：回落到底部再次小幅度压扁，幅度明显小于第3帧，耳朵还在晃。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/common/fall_single/frame_06.png",
+      "original": "tools/originals/common/fall_single/frame_06.png",
+      "priority": "core",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223646.jpg"
+      ],
+      "prompt": "回弹站稳：轻轻弹回并站直，表情恢复，姿态接近自然站姿，方便衔接待机呼吸。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/blink_a/frame_01.png",
+      "original": "tools/originals/idel/blink_a/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "7fdbe5e15ca9934c778e34772eeb8c7ea11b8b226cdc7c0883726729c39b0ab5",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "眨眼开始首帧：自然站姿，眼睛开始眯起一半。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/half.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/blink_a/frame_02.png",
+      "original": "tools/originals/idel/blink_a/frame_02.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "80fbaa2457d81cb17a9b18b0ac0ead8fdcbdb4e381dbbd49e8c7f320956dc48c",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "眨眼开始尾帧：眼睛眯成一条缝。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/nearly_closed.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/blink_b/frame_01.png",
+      "original": "tools/originals/idel/blink_b/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "506d1f60eb3e6ac62f21c6ab5a5a6ebe333e08b0f152e754b46e3b7ec23a4779",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "眨眼循环：眼睛闭上一瞬间，其他姿态与自然站姿相同。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/closed.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/blink_b/frame_02.png",
+      "original": "tools/originals/idel/blink_b/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "7fdbe5e15ca9934c778e34772eeb8c7ea11b8b226cdc7c0883726729c39b0ab5",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "眨眼循环第2帧：眼睛睁开一半。（备注：b 段两帧交替即可）",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/idel/blink_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/blink_c/frame_01.png",
+      "original": "tools/originals/idel/blink_c/frame_01.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "7fdbe5e15ca9934c778e34772eeb8c7ea11b8b226cdc7c0883726729c39b0ab5",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "眨眼结束首帧：眼睛重新睁开一半。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/idel/blink_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/blink_c/frame_02.png",
+      "original": "tools/originals/idel/blink_c/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "3303cd6ae8c9ba236265518ccbff49c0275202fd52f2c114e49965a7b3749702",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "眨眼结束尾帧：完全睁开，回到自然站姿。（可直接复制待机呼吸第3帧）",
+      "copy_after_source_approved": "default/breathe_b/frame_03.png",
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/default/breathe_b/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/yawn_single/frame_01.png",
+      "original": "tools/originals/idel/yawn_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "0cca58c8e295a1529f2fbefc8f70d7948122af3ba28699520459b479f8b64d73",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224202.jpg"
+      ],
+      "prompt": "打哈欠：嘴巴张大，眼睛眯起，身体微微后仰，像困倦地打了个哈欠。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/yawn.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/yawn_single/frame_02.png",
+      "original": "tools/originals/idel/yawn_single/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "00a4c8e59264973b3c2c21edb203a4736bc9ebf91b07eef1ae91ed5badb1af8c",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224202.jpg"
+      ],
+      "prompt": "尾帧：嘴巴慢慢合上，眼睛半睁，带着困意的满足表情，回到自然姿态。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_c/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/look_around_single/frame_01.png",
+      "original": "tools/originals/idel/look_around_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "cd6519b0b0cc84ef05d7d445b17d097cfaf69442f1521fbb58c1500dc1e4a97f",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "东张西望第1帧：头转向左侧，耳朵跟着转向左边，表情好奇。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/look_left.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/look_around_single/frame_02.png",
+      "original": "tools/originals/idel/look_around_single/frame_02.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "37229b21d1127638d48c6f55226fe76879c5fee9f6ca00c4a22b629436bd9de6",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "第2帧：头转回正中再微微偏向右边，看向另一侧，表情依旧好奇。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/look_right.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/look_around_single/frame_03.png",
+      "original": "tools/originals/idel/look_around_single/frame_03.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "尾帧：头回正，像刚看完四周，回到自然站姿。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/groom_single/frame_01.png",
+      "original": "tools/originals/idel/groom_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "106d4243d65f2c4c39fc3e5ff27449f9552c2d7cba0424e22fbda9be93c4eccf",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "舔毛第1帧：低头舔自己的前爪，眼睛眯起。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/groom_lick.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/groom_single/frame_02.png",
+      "original": "tools/originals/idel/groom_single/frame_02.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "f6a3a13b67efd9fabfe8848ccaace71787d4117f2cc3ff65f71bd346c061a846",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "第2帧：抬起前爪抹脸洗脸，眼睛闭合，姿态放松。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/groom_wash.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/groom_single/frame_03.png",
+      "original": "tools/originals/idel/groom_single/frame_03.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "尾帧：放下爪子，一副理完毛的满足表情，回到自然站姿。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/tail_swish_single/frame_01.png",
+      "original": "tools/originals/idel/tail_swish_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "5d889633feb05da8c14f7ae3f40ecff860aac95503c9ae74fe9634284b4d3724",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "甩尾巴第1帧：尾巴甩向左侧拍地，身体其余部分保持自然站姿，表情平淡。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/tail_left.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/tail_swish_single/frame_02.png",
+      "original": "tools/originals/idel/tail_swish_single/frame_02.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "48f421fadc820f42d775ab1aca43ac7b3c46b9c93ce96783f234623f6d83e474",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "第2帧：尾巴甩向右侧拍地，幅度与第1帧对称，身体姿态不变。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/tail_right.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/stretch_single/frame_01.png",
+      "original": "tools/originals/idel/stretch_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "d81f765ce7bc5ceb71a210fefb35383f45444c8e954e480dbbd909dce1ac0c81",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "伸懒腰：前爪向前伸展趴低，臀部抬高，腰背下压，眼睛微眯。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/stretch.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/stretch_single/frame_02.png",
+      "original": "tools/originals/idel/stretch_single/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "尾帧：收回身体站直，轻轻抖一下毛，回到自然站姿。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/doze_a/frame_01.png",
+      "original": "tools/originals/idel/doze_a/frame_01.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "00a4c8e59264973b3c2c21edb203a4736bc9ebf91b07eef1ae91ed5badb1af8c",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "打瞌睡开始首帧：头开始往下沉，眼皮慢慢合上，身体微微松懈。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_c/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/doze_a/frame_02.png",
+      "original": "tools/originals/idel/doze_a/frame_02.png",
+      "priority": "secondary",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "7dbe50f031683f6ddfd3d4c90ed32ef8406558b1bf14b16ec84a3bd9bbc36f4a",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "开始尾帧：头垂到最低，眼睛完全闭上，坐着打起了瞌睡。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/doze_b/frame_01.png",
+      "original": "tools/originals/idel/doze_b/frame_01.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "7dbe50f031683f6ddfd3d4c90ed32ef8406558b1bf14b16ec84a3bd9bbc36f4a",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "打瞌睡循环：头一点一点往下点，闭眼打盹。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/idel/doze_a/frame_02.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/doze_b/frame_02.png",
+      "original": "tools/originals/idel/doze_b/frame_02.png",
+      "priority": "secondary",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "4c90461b40eb1417fd91e20ffcb58fdb12ad8d56481c2d66d248afc1c21e5ef5",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "循环第2帧：头微微抬起一点又快速垂下，两帧交替形成点头打盹循环。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/doze_c/frame_01.png",
+      "original": "tools/originals/idel/doze_c/frame_01.png",
+      "priority": "secondary",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "7066e0fcbca761b41f2514f22ac62b0be8669f9d3a83ca05db46b81d6af6ee35",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "惊醒首帧：头猛地抬起，眼睛睁大，耳朵竖起，像突然惊醒。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/idel/doze_c/frame_02.png",
+      "original": "tools/originals/idel/doze_c/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "结束尾帧：回过神来，回到自然站姿，表情恢复平静。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/sleep/zzz_b/frame_01.png",
+      "original": "tools/originals/sleep/zzz_b/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "e5fc010027033dcde8ab7b83607653d351955a2ff281dd66fa3ee6ec9c731ae1",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "睡觉循环首帧：趴在地上蜷成一团，尾巴绕在体侧，眼睛闭合，整体压低贴近地面。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/sleep.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/sleep/zzz_b/frame_02.png",
+      "original": "tools/originals/sleep/zzz_b/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "e5fc010027033dcde8ab7b83607653d351955a2ff281dd66fa3ee6ec9c731ae1",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "循环第2帧：蜷缩状态下身体随呼吸微微鼓起一点。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/sleep/zzz_b/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/sleep/zzz_b/frame_03.png",
+      "original": "tools/originals/sleep/zzz_b/frame_03.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "e5fc010027033dcde8ab7b83607653d351955a2ff281dd66fa3ee6ec9c731ae1",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "循环第3帧：呼吸鼓起到最满，比第2帧再高一点。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/sleep/zzz_b/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/sleep/zzz_b/frame_04.png",
+      "original": "tools/originals/sleep/zzz_b/frame_04.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "e5fc010027033dcde8ab7b83607653d351955a2ff281dd66fa3ee6ec9c731ae1",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "循环尾帧：回落到首帧的压低状态，方便无缝循环。（可直接复制 frame_01 改名）",
+      "copy_after_source_approved": "sleep/zzz_b/frame_01.png",
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/sleep/zzz_b/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/startup/boot_single/frame_01.png",
+      "original": "tools/originals/startup/boot_single/frame_01.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "e5fc010027033dcde8ab7b83607653d351955a2ff281dd66fa3ee6ec9c731ae1",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "开机首帧：蜷缩成一团，闭眼，像刚被唤醒的静止状态。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/sleep/zzz_b/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/startup/boot_single/frame_02.png",
+      "original": "tools/originals/startup/boot_single/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "开机尾帧：舒展开身体站起，眼睛睁开，精神饱满，回到自然站姿。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/shutdown/bye_single/frame_01.png",
+      "original": "tools/originals/shutdown/bye_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "6aeb0da212fecbca0ba457c27f35290e0ea6ad3ea39e176bafd86fece429ca5c",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "关机首帧：抬起一只前爪挥动告别，眼睛微笑眯起。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/wave.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/shutdown/bye_single/frame_02.png",
+      "original": "tools/originals/shutdown/bye_single/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "e5fc010027033dcde8ab7b83607653d351955a2ff281dd66fa3ee6ec9c731ae1",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223804.jpg"
+      ],
+      "prompt": "关机尾帧：蜷缩成一团闭眼，与开机首帧姿态一致。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/sleep/zzz_b/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/say/talk_b/frame_01.png",
+      "original": "tools/originals/say/talk_b/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "c020cf13d8a4f122d38b2ae40dbffb205d17c6f3f0bc886d65c279f7402f3952",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224202.jpg"
+      ],
+      "prompt": "说话循环：嘴巴张开，表情活泼，像正在说话，身体姿态与自然站姿相同。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/talk.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/say/talk_b/frame_02.png",
+      "original": "tools/originals/say/talk_b/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "6083a7228a5f07bd495521659533dfc374636d8702210034821cb5af0e4adbb7",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224202.jpg"
+      ],
+      "prompt": "循环第2帧：嘴巴闭合，微笑，其余与上一帧相同。两帧交替形成说话嘴型循环。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/touch_head/touch_a/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/work/work_b/frame_01.png",
+      "original": "tools/originals/work/work_b/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "294315edfa485827259e578b667e56e32eec9c77d951a0c39e87c446333f28dd",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223824.jpg"
+      ],
+      "prompt": "专注状态循环：表情严肃认真，微微低头，前爪抬起做敲打动作，像在忙碌。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/work.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/work/work_b/frame_02.png",
+      "original": "tools/originals/work/work_b/frame_02.png",
+      "priority": "secondary",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "35e7151a2c8c9c9765b519899acd1fc2343f978ec9d2d22cfd22c650f7b2220f",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223824.jpg"
+      ],
+      "prompt": "专注循环第2帧：前爪落下敲打，头部位置与上一帧略有交替，两帧形成敲打循环。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/switch_up/up_single/frame_01.png",
+      "original": "tools/originals/switch_up/up_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "fbd5c096eaac8414f5d4e57ecb3e70521d06d2337ba12d7a6bdf3457a2d010db",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "开心蹦跳第1帧：整体位置略微上移，双腿蹬地跳起，四肢舒展，表情开心大笑。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/happy_jump.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/switch_up/up_single/frame_02.png",
+      "original": "tools/originals/switch_up/up_single/frame_02.png",
+      "priority": "secondary",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "e8b0cc1b3520c64a2f487e29d1a758ee6bd645cabfe9190b210b30cfcba5ac26",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 224028.jpg"
+      ],
+      "prompt": "开心蹦跳第2帧：落回地面，身体压缩半蹲，依然笑容满面。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/switch_down/down_single/frame_01.png",
+      "original": "tools/originals/switch_down/down_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "4b4b64a95e8e14b5c51fc3ce2163d55ec9ff5a976f8728fddfc48c02ba93aa4c",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223824.jpg"
+      ],
+      "prompt": "沮丧第1帧：低头耷脑，耳朵完全耷拉下来，眼睛半闭，身体微微佝偻。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/sad.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/switch_down/down_single/frame_02.png",
+      "original": "tools/originals/switch_down/down_single/frame_02.png",
+      "priority": "secondary",
+      "status": "approved_copy",
+      "current_asset_kind": "approved_copy",
+      "current_sha256": "4b4b64a95e8e14b5c51fc3ce2163d55ec9ff5a976f8728fddfc48c02ba93aa4c",
+      "reference_images": [
+        "tools/reference.png",
+        "picture/Screenshot 2026-09-28 223824.jpg"
+      ],
+      "prompt": "沮丧第2帧：头垂得更低，叹气般身体下沉一点。",
+      "copy_after_source_approved": null,
+      "source_frame": "DakamaoPet/PetMod/pet/dakamao/switch_down/down_single/frame_01.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/switch_hunger/hungry_single/frame_01.png",
+      "original": "tools/originals/switch_hunger/hungry_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "c4fe69847ad0818949cdd95252f749a55b5afdbaf7c41f0b814b527cf29b5442",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "饿了第1帧：两只前爪摸着自己的肚子，表情委屈，嘴巴微张。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/hungry.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/switch_hunger/hungry_single/frame_02.png",
+      "original": "tools/originals/switch_hunger/hungry_single/frame_02.png",
+      "priority": "secondary",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "3a91f1c76484242fe021e657507d1c7cf282c2cce8c5da7fc86b9fe648049f61",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "饿了第2帧：前爪揉肚子，头微微歪向一侧，表情更委屈。",
+      "copy_after_source_approved": null
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/switch_thirsty/thirsty_single/frame_01.png",
+      "original": "tools/originals/switch_thirsty/thirsty_single/frame_01.png",
+      "priority": "secondary",
+      "status": "imagegen_keyframe",
+      "current_asset_kind": "imagegen_keyframe",
+      "current_sha256": "e03d43e7b753bccc644bf68fea6ab04a1ecf961171d70d6b903a53191016930a",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "口渴第1帧：舌头吐出，微微喘气，耳朵略向后。",
+      "copy_after_source_approved": null,
+      "source_keyframe": "tools/keyframes/core/thirsty.png"
+    },
+    {
+      "target": "DakamaoPet/PetMod/pet/dakamao/switch_thirsty/thirsty_single/frame_02.png",
+      "original": "tools/originals/switch_thirsty/thirsty_single/frame_02.png",
+      "priority": "secondary",
+      "status": "derived_inbetween",
+      "current_asset_kind": "derived_inbetween",
+      "current_sha256": "e203bb49aafaec6f4a3fc16e956840d26350f74494883ed56bcd83841ce815dd",
+      "reference_images": [
+        "tools/reference.png"
+      ],
+      "prompt": "口渴第2帧：舌头吐得更长，喘气幅度加大，身体微微起伏。",
+      "copy_after_source_approved": null
+    }
+  ],
+  "approved_delivery_frames": 84,
+  "completed_date": "2026-09-29"
+}

@@ -1,0 +1,12 @@
+{
+  "sequences": 55,
+  "dense_frames": 3571,
+  "all_registered_states_use_original_png_renderer": true,
+  "roll_is_exact_reverse": true,
+  "flip_frames": 551,
+  "ear_bounce_frames": 120,
+  "anatomical_drawings": 41,
+  "unique_roll_frames": 551,
+  "anchor_shake_reduction": 0.282688761989889,
+  "issues": []
+}

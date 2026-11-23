@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-30",
+  "exe_sha256": "44CB63C0D825255CBD098B0B515E6E026CDC35345C78AD8FB74DDCC4AD2FEA4C",
+  "frames": 1482,
+  "slider_mouse_drag": {
+    "from_percent": 100,
+    "to_percent": 127.80748663101603,
+    "started_and_completed_logged": true,
+    "pet_grab_or_touch_during_drag": false,
+    "restored": 100
+  },
+  "walk": {
+    "speed_at_100_percent_px_per_second": 32,
+    "start_left": 1172,
+    "first_target": 519,
+    "continued_same_direction_at_left": 519.2,
+    "next_target": 0,
+    "reversed_at_edge_left": 0,
+    "time_before_reversal_seconds": 41.56
+  },
+  "animation_frames": {
+    "turn_entry_per_direction": 33,
+    "turn_exit_per_direction": 33,
+    "walk_cycle_per_direction": 41
+  },
+  "decoded_review": [
+    "v18-walk-decoded.png",
+    "v18-head_touch-decoded.png"
+  ],
+  "validation": "frame-validation-v18.json"
+}

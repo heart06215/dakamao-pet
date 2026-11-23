@@ -1,0 +1,16 @@
+{
+  "native_click_through_enabled": true,
+  "unlock_has_independent_native_window": true,
+  "unlock_button_restores_interaction": true,
+  "disabling_topmost_unlocks_pet": true,
+  "size_300_and_five_presets": true,
+  "size_160_preset": true,
+  "declaration_scope_and_required_text": true,
+  "github_placeholder_present": true,
+  "played_sleep_roll_to_belly_Single": true,
+  "played_sleep_roll_to_curled_Single": true,
+  "played_sleep_curled_C_End": true,
+  "played_touch_head_touch_A_Start": true,
+  "original_input_surface_retained_during_fluid_playback": true,
+  "passed": true
+}

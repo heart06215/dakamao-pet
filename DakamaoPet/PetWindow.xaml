@@ -1,0 +1,179 @@
+<Window x:Class="DakamaoPet.PetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="大卡猫"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="{x:Null}"
+        Topmost="True"
+        ShowInTaskbar="True"
+        ResizeMode="NoResize"
+        Width="320" Height="320"
+        WindowStartupLocation="Manual"
+        Left="200" Top="200"
+        UseLayoutRounding="True" SnapsToDevicePixels="True">
+    <Window.Resources>
+        <Style x:Key="RingActionButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#FF285780" />
+            <Setter Property="BorderBrush" Value="#FFD5E8F4" />
+            <Setter Property="BorderThickness" Value="1.5" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Chrome" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="13" Padding="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Chrome" Property="Background" Value="#FF3975A5" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Chrome" Property="Background" Value="#FF173D60" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="#FFFFD788" />
+                                <Setter TargetName="Chrome" Property="BorderThickness" Value="3" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Chrome" Property="Opacity" Value="0.48" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RingCenterButtonStyle" TargetType="Button" BasedOn="{StaticResource RingActionButtonStyle}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Background" Value="#FF153B5B" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse x:Name="Disc" Fill="{TemplateBinding Background}"
+                                     Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2" />
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Disc" Property="Fill" Value="#FF3975A5" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Disc" Property="Fill" Value="#FF173D60" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Disc" Property="Stroke" Value="#FFFFD788" />
+                                <Setter TargetName="Disc" Property="StrokeThickness" Value="4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Viewbox x:Name="PetView" Stretch="Uniform" RenderTransformOrigin="0.5,0.12"
+                 RenderOptions.BitmapScalingMode="HighQuality">
+            <Viewbox.RenderTransform>
+                <RotateTransform x:Name="PetSway" />
+            </Viewbox.RenderTransform>
+        </Viewbox>
+        <Canvas x:Name="GhostHandLayer"
+                Width="88" Height="100"
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                Margin="0"
+                IsHitTestVisible="False" Opacity="0"
+                RenderTransformOrigin="0.5,0.5"
+                Panel.ZIndex="1">
+            <Canvas.Effect>
+                <DropShadowEffect Color="White" BlurRadius="5" ShadowDepth="0" Opacity="0.55" />
+            </Canvas.Effect>
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform x:Name="GhostHandTilt" Angle="180" />
+                    <TranslateTransform x:Name="GhostHandShift" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Path Width="67" Height="79" Canvas.Left="10" Canvas.Top="10"
+                  Stretch="Fill"
+                  Fill="#C8FFFFFF" Stroke="White" StrokeThickness="2.4"
+                  StrokeLineJoin="Round"
+                  Data="M 11,72 C 4,65 1,58 2,49 C 2,44 6,42 10,44 L 14,50 L 14,18 C 14,13 17,10 21,10 C 25,10 28,13 28,18 L 28,40 L 28,8 C 28,3 31,1 35,1 C 39,1 42,4 42,8 L 42,40 L 42,13 C 42,9 45,7 49,7 C 53,7 56,10 56,14 L 56,44 L 56,23 C 56,19 59,17 63,17 C 67,17 70,20 70,24 L 70,55 C 70,74 58,87 38,87 L 29,87 C 21,87 15,82 11,72 Z" />
+            <Ellipse Width="7" Height="7" Fill="#E6FFFFFF" Canvas.Left="0" Canvas.Top="34" />
+            <Ellipse Width="5" Height="5" Fill="#E6FFFFFF" Canvas.Left="79" Canvas.Top="68" />
+        </Canvas>
+        <Border x:Name="DragHandle"
+                Width="38" Height="38"
+                HorizontalAlignment="Center" VerticalAlignment="Top"
+                Margin="0,12,0,0"
+                CornerRadius="19"
+                Background="#EC2368BC"
+                BorderBrush="#FFFFF5D8" BorderThickness="2"
+                Cursor="SizeAll"
+                Panel.ZIndex="2"
+                MouseLeftButtonDown="DragHandle_MouseLeftButtonDown"
+                MouseMove="DragHandle_MouseMove"
+                MouseLeftButtonUp="DragHandle_MouseLeftButtonUp"
+                LostMouseCapture="DragHandle_LostMouseCapture">
+            <TextBlock Text="✥" FontSize="22" FontWeight="SemiBold"
+                       Foreground="White" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" IsHitTestVisible="False" />
+        </Border>
+        <Popup x:Name="ActionRing" AllowsTransparency="True" StaysOpen="False"
+               Placement="AbsolutePoint" PopupAnimation="Fade">
+            <Canvas Width="160" Height="160" KeyboardNavigation.TabNavigation="Cycle">
+                <Ellipse Width="154" Height="154" Canvas.Left="3" Canvas.Top="3"
+                         Fill="#F01A2738" Stroke="#D5B5D9F0" StrokeThickness="2">
+                    <Ellipse.Effect>
+                        <DropShadowEffect Color="#FF080F1A" BlurRadius="18" ShadowDepth="5" Opacity="0.55" />
+                    </Ellipse.Effect>
+                </Ellipse>
+                <Ellipse Width="112" Height="112" Canvas.Left="24" Canvas.Top="24"
+                         Stroke="#6DA4C6E5" StrokeThickness="1" IsHitTestVisible="False" />
+                <Ellipse Width="56" Height="56" Canvas.Left="52" Canvas.Top="52"
+                         Fill="#FF1F3043" Stroke="#8DB2D4EC" StrokeThickness="1"
+                         IsHitTestVisible="False" />
+                <Canvas x:Name="RingButtons" Width="160" Height="160" />
+                <Button x:Name="RingCenterButton" Width="44" Height="44"
+                        Canvas.Left="58" Canvas.Top="58"
+                        Style="{StaticResource RingCenterButtonStyle}"
+                        Content="收起" AutomationProperties.Name="收起面板" />
+            </Canvas>
+        </Popup>
+        <Popup x:Name="SizePopup" AllowsTransparency="True" StaysOpen="False"
+               Placement="AbsolutePoint" Opened="SizePopup_Opened">
+            <Border Width="188" Padding="12" Background="#FF1F3043"
+                    BorderBrush="#FFD5E8F4" BorderThickness="1.5" CornerRadius="12"
+                    KeyboardNavigation.TabNavigation="Cycle" PreviewKeyDown="SizePopup_KeyDown">
+                <StackPanel>
+                    <TextBlock x:Name="SizeValueText" Text="大小 100%" Foreground="White"
+                               FontFamily="Microsoft YaHei UI" FontSize="12" Margin="0,0,0,6" />
+                    <Slider x:Name="SizeSlider" Minimum="60" Maximum="300" Value="100"
+                            SmallChange="5" LargeChange="20" Height="30"
+                            AutomationProperties.Name="大卡猫大小百分比"
+                            ValueChanged="SizeSlider_ValueChanged" />
+                    <ComboBox x:Name="SizePresets" Height="28" Margin="0,4,0,0"
+                              AutomationProperties.Name="大小预设档位"
+                              SelectionChanged="SizePresets_SelectionChanged">
+                        <ComboBoxItem Content="60%" />
+                        <ComboBoxItem Content="100%" />
+                        <ComboBoxItem Content="160%" />
+                        <ComboBoxItem Content="200%" />
+                        <ComboBoxItem Content="300%" />
+                    </ComboBox>
+                    <Button Content="恢复 100%" Width="92" Height="26" Margin="0,6,0,0"
+                            HorizontalAlignment="Left" Style="{StaticResource RingActionButtonStyle}"
+                            Click="ResetSize_Click" />
+                </StackPanel>
+            </Border>
+        </Popup>
+    </Grid>
+</Window>

@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-30",
+  "exe_sha256": "EC1480C399AC2CF7195C965BF378A6B25272298E4CE280D75D15CA1EDB092254",
+  "asset_frames": 1354,
+  "registered_folders": 53,
+  "size": {
+    "keyboard_change": "100% -> 95%, 304x304",
+    "restarted_window": "304x304",
+    "reset": "100%, 320x320"
+  },
+  "walk": {
+    "first_origin": 1208.0,
+    "first_destination": 985.7,
+    "directions_observed": [
+      -1,
+      1
+    ],
+    "floor_at_95_percent": 512.0,
+    "stopped_left": 932.0,
+    "stopped_top": 512.0,
+    "menu_paused": "menu opened 14:56:01; settle requested 14:56:30, remained same leg"
+  },
+  "touch": {
+    "body_click": [
+      150,
+      210
+    ],
+    "body_stages": [
+      31,
+      25,
+      31
+    ],
+    "head_click": [
+      158,
+      170
+    ],
+    "white_hand_logged": true
+  },
+  "sleep_switch": {
+    "from": "sleep_curled/B_Loop",
+    "transition": "sleep_roll_to_belly/Single",
+    "frames": 37,
+    "to": "sleep_belly/B_Loop"
+  },
+  "runtime_log": "%LOCALAPPDATA%/DakamaoPet/app.log"
+}

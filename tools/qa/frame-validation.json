@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-29",
+  "target_count": 84,
+  "counts": {
+    "imagegen_keyframe": 31,
+    "derived_inbetween": 20,
+    "approved_copy": 33
+  },
+  "format": "256x256 RGBA PNG",
+  "contact_sheets": [
+    "tools/qa/blink-contact.png",
+    "tools/qa/touch-head-contact.png",
+    "tools/qa/touch-body-contact.png",
+    "tools/qa/raised-fall-contact.png",
+    "tools/qa/idle-actions-contact.png",
+    "tools/qa/other-actions-contact.png"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "registered_folders": 36,
+  "picture_style_keyframes": 46,
+  "total_frames": 348,
+  "folder_frames": {
+    "common/fall_single": 7,
+    "common/falling_single": 6,
+    "default/breathe_b": 12,
+    "idel/blink_a": 6,
+    "idel/blink_b": 2,
+    "idel/blink_c": 6,
+    "idel/doze_a": 5,
+    "idel/doze_b": 4,
+    "idel/doze_c": 5,
+    "idel/groom_single": 7,
+    "idel/look_around_single": 21,
+    "idel/stretch_single": 11,
+    "idel/tail_swish_single": 7,
+    "idel/yawn_single": 5,
+    "raised_dynamic/wiggle_single": 4,
+    "raised_static/hold_a": 3,
+    "raised_static/hold_b": 4,
+    "raised_static/hold_c": 3,
+    "say/talk_b": 4,
+    "shutdown/bye_single": 5,
+    "sleep/zzz_b": 8,
+    "startup/boot_single": 7,
+    "switch_down/down_single": 5,
+    "switch_hunger/hungry_single": 5,
+    "switch_thirsty/thirsty_single": 5,
+    "switch_up/up_single": 5,
+    "touch_body/touch_a": 6,
+    "touch_body/touch_b": 8,
+    "touch_body/touch_c": 6,
+    "touch_head/purr_a": 23,
+    "touch_head/purr_b": 50,
+    "touch_head/purr_c": 9,
+    "touch_head/touch_a": 23,
+    "touch_head/touch_b": 48,
+    "touch_head/touch_c": 9,
+    "work/work_b": 4
+  },
+  "touch_palette_medians": {
+    "front_neutral": [
+      239,
+      232,
+      232
+    ],
+    "tilt_early_left": [
+      238,
+      232,
+      231
+    ],
+    "tilt_soft_left": [
+      239,
+      233,
+      232
+    ],
+    "tilt_middle_left": [
+      238,
+      233,
+      233
+    ],
+    "tilt_far_left": [
+      239,
+      232,
+      233
+    ],
+    "tilt_early_right": [
+      238,
+      231,
+      231
+    ],
+    "tilt_soft_right": [
+      240,
+      233,
+      233
+    ],
+    "tilt_middle_right": [
+      240,
+      234,
+      234
+    ],
+    "tilt_far_right": [
+      239,
+      235,
+      236
+    ],
+    "touch_smile_right": [
+      239,
+      232,
+      232
+    ],
+    "touch_nudge_early": [
+      240,
+      233,
+      232
+    ],
+    "touch_nudge_mid": [
+      240,
+      233,
+      233
+    ],
+    "touch_nudge_peak": [
+      240,
+      232,
+      232
+    ]
+  },
+  "sha256": "65d9de233a13381f9e810d6dfa21055d00bfae1edd9eac01ca471e31228fc177",
+  "issues": []
+}

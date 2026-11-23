@@ -1,0 +1,12 @@
+{
+  "frame_count": 551,
+  "unique_pixel_frames": 551,
+  "anchor_acceleration_rms_before": 0.041640132665634155,
+  "anchor_acceleration_rms_after": 0.03032459686876511,
+  "max_registration_pixels": 0.8912353515625,
+  "exact_sleep_endpoints_preserved": true,
+  "temporal_filter": "3-frame motion compensated",
+  "revision": "v26_whole_body",
+  "key_count": 43,
+  "duration_ms": 4400
+}

@@ -1,0 +1,5 @@
+dakamao#大卡猫:|intor#由序列帧驱动的极简桌宠:|petname#大卡猫:|path#pet/dakamao:|
+touchhead:|px#100:|py#80:|sw#300:|sh#220:|
+touchbody:|px#100:|py#300:|sw#300:|sh#190:|
+touchraised:|happy_px#60:|happy_py#50:|happy_sw#380:|happy_sh#440:|nomal_px#60:|nomal_py#50:|nomal_sw#380:|nomal_sh#440:|poorcondition_px#60:|poorcondition_py#50:|poorcondition_sw#380:|poorcondition_sh#440:|ill_px#60:|ill_py#50:|ill_sw#380:|ill_sh#440:|
+raisepoint:|happy_x#250:|happy_y#220:|nomal_x#250:|nomal_y#220:|poorcondition_x#250:|poorcondition_y#220:|ill_x#250:|ill_y#220:|

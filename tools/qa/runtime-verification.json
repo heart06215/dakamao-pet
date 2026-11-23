@@ -1,0 +1,15 @@
+{
+  "verified_at": "2026-09-29T12:45:42+08:00",
+  "executable": "大卡猫.exe",
+  "sha256": "2454478A8AE90BBAB42A28FC9E0286E717872B5FEBF623A695163F7780564BAD",
+  "configuration": "Release win-x64 self-contained single-file",
+  "root_and_release_hash_match": true,
+  "process_started": true,
+  "asset_files_loaded": 84,
+  "window_size": "320x320",
+  "startup_log_ready": true,
+  "generated_keyframes_approved": 31,
+  "delivery_frames_approved": 84,
+  "visual_review": "six contact sheets reviewed",
+  "mouse_interactions_this_run": "not exercised"
+}

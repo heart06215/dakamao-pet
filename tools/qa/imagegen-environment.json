@@ -1,0 +1,16 @@
+{
+  "checked_date": "2026-09-29",
+  "local_feature": {"name": "image_generation", "stage": "stable", "enabled": true},
+  "configured_provider": "custom",
+  "configured_provider_host": "api.zyuou.com",
+  "attempted_asset": "genuine closed-eye keyframe based on tools/reference.png",
+  "tool": "built_in_imagegen",
+  "result": "blocked",
+  "http_status": 403,
+  "error_type": "permission_error",
+  "error_message": "Image generation is not enabled for this group",
+  "local_configuration_changed": false,
+  "generated_keyframes_approved": 0,
+  "next_required_condition": "The service grants image generation to this group, or the session uses an account and service with image generation enabled.",
+  "production_strategy": "Generate the actual closed-eye pose first, then create and visually review transition frames."
+}

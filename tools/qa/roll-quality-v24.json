@@ -1,0 +1,13 @@
+{
+  "base_registered_old": {
+    "mean_ink_detail": 700.5904663715166,
+    "worst_adjacent_change": 5.885112762451172,
+    "mean_adjacent_change": 2.8748239808612404
+  },
+  "new_direct_roll": {
+    "mean_ink_detail": 2485.988892568301,
+    "worst_adjacent_change": 7.172771453857422,
+    "mean_adjacent_change": 2.2024395823615253
+  },
+  "drawing_keys": 15
+}

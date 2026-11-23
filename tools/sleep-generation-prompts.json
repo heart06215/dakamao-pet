@@ -1,0 +1,50 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-09-30",
+  "references": [
+    "picture/Screenshot 2026-09-28 223748.jpg",
+    "picture/Screenshot 2026-09-28 224235.jpg"
+  ],
+  "assets": [
+    {
+      "file": "tools/keyframes/picture_style/sleep_head_up.png",
+      "generated_source": "C:\\Users\\27824\\.codex\\generated_images\\01a0eb59-c50f-7951-bc74-3963cc0d6d38\\exec-9f47e2c0-df4c-478e-a199-e43cc077c4ca.png",
+      "prompt": "Create ONE transparent-background animation keyframe for the SAME adult fat white cat. Image 1 is the EDIT TARGET: preserve its curled sleeping body, hindquarters, tail, two planted forepaws, fur color, thin dark-brown outlines, golden horn and blue ornaments exactly. Image 2 is the approved face/identity reference. Image 3 is the requested pose reference: the cat has lifted ONLY its head and upper neck off its planted paws to look at a person petting it, with a short tiny open surprised mouth and relaxed LARGE ROUND blue eyes below separate short HORIZONTAL bar eyebrows, faint outer eye corners. Very round fat cheeks, no chin stretching, no defined jaw line, adult heavy body not baby. Head upright looking forward, same view and scale as image 1. The huge rounded back stays unchanged behind head. The two forepaws and tail must remain at the same pixel locations. Exactly four anatomical legs total, no extra legs, no hand, no scenery, no text, no glow. Match the existing sprite's warm off-white palette and hair length. Full character with margin on genuinely transparent background. SINGLE frame."
+    },
+    {
+      "file": "tools/keyframes/picture_style/sleep_belly_up.png",
+      "generated_source": "C:\\Users\\27824\\.codex\\generated_images\\01a0eb59-c50f-7951-bc74-3963cc0d6d38\\exec-4726c984-f1e2-4e64-a53f-18c7731d52ed.png",
+      "prompt": "Generate ONE full-body transparent animation keyframe of exactly the SAME adult very fat white cat in images 1 and 2, styled as their thin dark-brown outlined warm off-white sprite. Image 3 is the highest-priority POSE reference: sleeping on its BACK with an enormous round heavy belly, head resting on ground to LEFT, two small front paws loosely bent toward chest, TWO hind feet raised toward viewer with pink paw pads, curled tail resting on ground to RIGHT. Exactly FOUR legs, each attached anatomically to its proper shoulder or hip; no fifth limb. Eyes softly closed, tiny relaxed mouth. Preserve layered long silver-white bangs and cheek hair, gold forehead horn and blue branch ornaments, white stars. Body broader/heavier than head, adult not kitten. Belly must be big round and compact, not long tubular. Match screenshot pose and proportions, and existing sprite's color/outline rendering; no Disney eyelashes, no narrow almond eye design. Don't include furniture, floor, background, shadow, lettering or extra effects. Single isolated character with all tips visible and small transparent margin."
+    },
+    {
+      "file": "tools/keyframes/picture_style/sleep_head_half.png",
+      "generated_source": "C:\\Users\\27824\\.codex\\generated_images\\01a0eb59-c50f-7951-bc74-3963cc0d6d38\\exec-b597e831-511b-427a-ad06-732a0816f6c3.png",
+      "prompt": "ONE transparent animation in-between frame. Image 1 is the starting sleeping sprite, image 2 the end head-lift sprite. Preserve image 1's EXACT body, back, two grounded forepaws, tail, silhouette width, color, line weight and all paw pixel positions. The ONLY change is its head lifted HALFWAY between images 1 and 2: forehead horn becomes more upright halfway, round cheek face comes slightly up from the forepaws, eyes partially open as round sleepy blue eyes under separate horizontal eyebrows. Tiny relaxed mouth, fat round cheek/chin not elongated. Keep adult cat identity, hair, ornaments and outline. Do not shrink head or body, no extra limbs, no hand, no scenery or shadows. Match image 1 canvas and character position; genuine transparent background. Single frame."
+    },
+    {
+      "file": "tools/keyframes/picture_style/sleep_roll_side.png",
+      "generated_source": "C:\\Users\\27824\\.codex\\generated_images\\01a0eb59-c50f-7951-bc74-3963cc0d6d38\\exec-93aa8115-5ee5-4819-ab37-e69bf166059f.png",
+      "prompt": "ONE transparent intermediate animation keyframe of the same fat adult cat, between image 1 curled on paws and image 2 sleeping belly-up. This is the EARLY rolling step: from image 1 the cat gently settles onto its LEFT SIDE, head still low and to left, huge round torso behind it, paws no longer planted and begin curling toward chest, rear paws start turning upward but belly only partly exposed. About 30 degrees of body roll, no airborne cat or vertical jumping. Exactly four legs attached correctly, eyes remain closed, same golden horn and blue ornaments, layered long silver hair, warm off-white color and thin dark brown outlines. Compact HUGE round belly and adult proportions exactly as references. Ground contact stays at same baseline as images 1 and 2. All four paws and tail visible as appropriate with no duplicate paws, no fifth limb. Transparent isolated character, full body, one frame."
+    },
+    {
+      "file": "tools/keyframes/picture_style/sleep_roll_mid.png",
+      "generated_source": "C:\\Users\\27824\\.codex\\generated_images\\01a0eb59-c50f-7951-bc74-3963cc0d6d38\\exec-428a3df5-67ad-4f36-8a83-2bdcdef8fe05.png",
+      "prompt": "ONE transparent intermediate animation keyframe of the same adult fat cat BETWEEN curled sleep image 1 and belly-up sleep image 2, LATE rolling step. Cat almost on its BACK, rolled about 65 degrees, huge compact round belly exposed toward viewer, head lying low on ground to LEFT, two forepaws folding near chest and two hind feet rotating toward ceiling with only partial paw pads visible. Exactly FOUR anatomical limbs correctly attached; no fifth paw. Tail lying on ground RIGHT. Sleeping eyes closed, tiny relaxed mouth, same golden horn, blue ornaments, long layered silver-white hair, thin dark-brown outline and warm off-white color. Adult broad heavy body larger than head, no tube body or baby proportion. Same ground baseline and overall scale as references, absolutely no upward jump. Single isolated full character on genuine transparent background with margin, no scenery/shadow/text."
+    },
+    {
+      "file": "tools/keyframes/picture_style/sleep_belly_head_up.png",
+      "generated_source": "C:\\Users\\27824\\.codex\\generated_images\\01a0eb59-c50f-7951-bc74-3963cc0d6d38\\exec-41642a94-e915-4b30-bb7a-f05fcc11c732.png",
+      "prompt": "Edit image 1 into ONE transparent animation keyframe: the SAME belly-up sleeping cat responds to a head pat by gently lifting/tilting ONLY its head slightly toward viewer and opening its large ROUND blue eyes under separate short HORIZONTAL eyebrows, tiny open mouth. The belly, all FOUR legs, raised hind paw pads, two folded forepaws, tail, fur color and body silhouette must stay EXACTLY in image 1 positions. Keep the head on the LEFT and at nearly same level, neck only mildly flexes upward, rounded fat cheeks no stretched chin or jaw line. Image 2 is face identity reference. Warm off-white adult huge round cat body, layered long hair, golden horn and blue branches, same thin dark brown outlines. No added limbs, no hand, no scene, no lettering, no glow, transparent background. Full isolated character SAME canvas as image 1. Single frame."
+    },
+    {
+      "file": "tools/keyframes/picture_style/sleep_belly_head_half.png",
+      "generated_source": "C:\\Users\\27824\\.codex\\generated_images\\01a0eb59-c50f-7951-bc74-3963cc0d6d38\\exec-82617b50-7e86-4c65-856b-87040be78657.png",
+      "prompt": "Create ONE transparent in-between animation frame, EXACTLY halfway from sleeping belly-up cat in image 1 to head-pat response in image 2. Keep the body, round belly, tail, all four paws and two hind paw pads EXACTLY unchanged from image 1. ONLY head tilts a tiny amount upward, HALF of the change in image 2, and eyes half-open as round blue sleepy eyes below separate short horizontal eyebrows. Tiny neutral mouth halfway open. Keep same adult fat cheeks, layered long hair and golden horn / blue ornaments, exact canvas placement and palette, dark brown outline. No floating or shrink, no extra limbs or scenery. Full character on genuine transparent background. Single frame."
+    },
+    {
+      "file": "tools/keyframes/picture_style/sleep_roll_early.png",
+      "generated_source": "C:\\Users\\27824\\.codex\\generated_images\\01a0eb59-c50f-7951-bc74-3963cc0d6d38\\exec-7834ce1d-a290-47b5-bb98-241d03dbb835.png",
+      "prompt": "One transparent animation keyframe, VERY EARLY roll between curled cat image 1 and belly-up cat image 2. Cat still lying mostly on its SIDE with its huge back behind head, just beginning to roll backward. Keep head and horn tilted sleeping low to LEFT. Expose only a small strip of belly. Two forepaws now loosely bent just under cheeks/chest, no longer weight bearing. Two hind legs tucked sideways close to rump at RIGHT: do NOT point feet at viewer yet, do NOT show pink hind paw pads yet. Tail on ground right. Adult enormous rounded belly, no tubular body. Four legs exactly, closed eyes, same warm off-white fur, long layered hair, golden horn blue ornaments, dark brown outline. Follow image 1 identity and compact silhouette, change pose only about 15 degrees. Full isolated cat and genuine transparent background, no shadow/text/hand. Same low ground baseline, no jump. ONE frame."
+    }
+  ]
+}

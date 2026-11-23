@@ -1,0 +1,21 @@
+{
+  "edit_target": "tools/keyframes/picture_style/touch_smile_right.png",
+  "compositing": "Only mouth ROI enters existing approved sprite; body and eyes remain fixed.",
+  "outputs": [
+    {
+      "stage": "quarter",
+      "prompt": "Use case: precise-object-edit. Edit the provided transparent desktop cat sprite. Keep canvas, crop, pose, head tilt, silhouette, paws, hair, outline, gold horn, blue ornaments, round blue eyes under separate horizontal eyebrows, colors and lighting exactly unchanged. Change ONLY the tiny mouth below the nose: make the mouth a very tiny barely open delighted smile, 25% of the original open mouth height, with only a small pink inner slit. Same upper lip and nose position. Do not move or resize the face or body. Transparent background.",
+      "asset": "tools/keyframes/picture_style/touch_mouth_quarter.png"
+    },
+    {
+      "stage": "half",
+      "prompt": "Use case: precise-object-edit. Edit the provided transparent desktop cat sprite. Keep canvas, crop, pose, head tilt, silhouette, paws, hair, outline, gold horn, blue ornaments, round blue eyes under separate horizontal eyebrows, colors and lighting exactly unchanged. Change ONLY the tiny mouth below the nose: make the mouth a small half-open delighted smile, 55% of the original open mouth height, small visible pink tongue. Same upper lip and nose position. Do not move or resize the face or body. Transparent background.",
+      "asset": "tools/keyframes/picture_style/touch_mouth_half.png"
+    },
+    {
+      "stage": "closed",
+      "prompt": "Use case: precise-object-edit. Edit the provided transparent desktop cat sprite. Keep canvas, crop, pose, head tilt, silhouette, paws, hair, outline, gold horn, blue ornaments, round blue eyes under separate horizontal eyebrows, colors and lighting exactly unchanged. Change ONLY the tiny mouth below the nose: close the mouth into a tiny gentle w-shaped cat smile, no visible tongue or open pink interior. Keep nose and upper lip position. Do not move or resize the face or body. Transparent background.",
+      "asset": "tools/keyframes/picture_style/touch_mouth_closed.png"
+    }
+  ]
+}

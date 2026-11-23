@@ -1,0 +1,17 @@
+{
+  "version": "v15",
+  "assets_loaded": 1102,
+  "head_and_body_touch_use_full_sequences": true,
+  "body_hand_click": [156, 268],
+  "body_hand_margin": [113, 180],
+  "body_to_head_requested_during_body_a": true,
+  "body_c_end": "2026-09-30T12:58:51.7028266+08:00",
+  "head_a_start": "2026-09-30T12:58:51.7043418+08:00",
+  "body_to_head_gap_ms": 1.5152,
+  "queued_head_hand_click": [160, 214],
+  "sleep_wake_requested_during_head_response": true,
+  "sleep_wake_queue_log": "2026-09-30T13:01:46.9535687+08:00 SLEEP wake_after_settle",
+  "root_and_release_exe_sha256": "E88A39FBEB869256507F97C3749B9DD8AF93CDAF482F3E351A1683C99D2797C8",
+  "build_errors": 0,
+  "build_warnings": 0
+}

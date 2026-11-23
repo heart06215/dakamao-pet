@@ -1,0 +1,130 @@
+{
+  "registered_folders": 47,
+  "picture_style_keyframes": 73,
+  "total_frames": 1268,
+  "frame_resolution": 512,
+  "blink_frames": 26,
+  "blink_frame_ms": 10,
+  "blink_fps": 100.0,
+  "blink_duration_ms": 260,
+  "blink_body_fixed": true,
+  "mouth_cycle_frames": 13,
+  "mouth_unique_frames": 7,
+  "mouth_face_body_fixed": true,
+  "body_touch_face_only": true,
+  "body_touch_closed_eyes": true,
+  "front_touch_bounds": [
+    106,
+    138,
+    406,
+    496
+  ],
+  "front_touch_split_y": 317.0,
+  "sleep_direct_switch_seams": 4,
+  "folder_frames": {
+    "common/fall_single": 46,
+    "common/falling_single": 15,
+    "default/breathe_b": 12,
+    "idel/blink_a": 11,
+    "idel/blink_b": 4,
+    "idel/blink_c": 11,
+    "idel/doze_a": 5,
+    "idel/doze_b": 4,
+    "idel/doze_c": 5,
+    "idel/groom_single": 7,
+    "idel/look_around_single": 41,
+    "idel/sleep_single": 88,
+    "idel/stretch_single": 51,
+    "idel/tail_swish_single": 19,
+    "idel/yawn_single": 9,
+    "raised_dynamic/wiggle_single": 4,
+    "raised_static/hold_a": 3,
+    "raised_static/hold_b": 5,
+    "raised_static/hold_c": 6,
+    "say/talk_b": 4,
+    "shutdown/bye_single": 5,
+    "sleep/belly_a": 79,
+    "sleep/belly_b": 8,
+    "sleep/belly_c": 103,
+    "sleep/belly_touch_single": 37,
+    "sleep/curled_a": 43,
+    "sleep/curled_b": 8,
+    "sleep/curled_c": 67,
+    "sleep/curled_touch_single": 49,
+    "sleep/flip_to_belly_single": 37,
+    "sleep/flip_to_curled_single": 37,
+    "sleep/zzz_b": 8,
+    "startup/boot_single": 7,
+    "switch_down/down_single": 5,
+    "switch_hunger/hungry_single": 5,
+    "switch_thirsty/thirsty_single": 5,
+    "switch_up/up_single": 5,
+    "touch_body/touch_a": 31,
+    "touch_body/touch_b": 25,
+    "touch_body/touch_c": 31,
+    "touch_head/purr_a": 33,
+    "touch_head/purr_b": 114,
+    "touch_head/purr_c": 21,
+    "touch_head/touch_a": 21,
+    "touch_head/touch_b": 109,
+    "touch_head/touch_c": 21,
+    "work/work_b": 4
+  },
+  "matched_transition_seams": 24,
+  "neutral_idle_actions": 6,
+  "stationary_sleep_loops": 3,
+  "touch_palette_medians": {
+    "front_neutral": [
+      239,
+      232,
+      232
+    ],
+    "tilt_early_left": [
+      238,
+      232,
+      231
+    ],
+    "tilt_soft_left": [
+      239,
+      233,
+      232
+    ],
+    "tilt_middle_left": [
+      238,
+      233,
+      233
+    ],
+    "tilt_far_left": [
+      239,
+      232,
+      233
+    ],
+    "tilt_early_right": [
+      238,
+      231,
+      231
+    ],
+    "tilt_soft_right": [
+      240,
+      233,
+      233
+    ],
+    "tilt_middle_right": [
+      240,
+      234,
+      234
+    ],
+    "tilt_far_right": [
+      239,
+      235,
+      236
+    ],
+    "touch_smile_right": [
+      239,
+      232,
+      232
+    ]
+  },
+  "sha256": "09e2ea9fd8a6fae56c3f2c567959e1c49324dce0023d22fba4717f1480e65786",
+  "issues": []
+}

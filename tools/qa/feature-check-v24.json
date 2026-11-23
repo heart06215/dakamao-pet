@@ -1,0 +1,22 @@
+{
+  "native_click_through_enabled": true,
+  "unlock_has_independent_native_window": true,
+  "unlock_button_restores_interaction": true,
+  "disabling_topmost_unlocks_pet": true,
+  "size_300_and_five_presets": true,
+  "size_160_preset": true,
+  "declaration_scope_and_required_text": true,
+  "github_placeholder_present": true,
+  "played_sleep_roll_to_belly_Single": true,
+  "played_sleep_roll_to_curled_Single": true,
+  "played_sleep_curled_C_End": true,
+  "played_touch_head_touch_A_Start": true,
+  "played_raised_static_hold_B_Loop": true,
+  "played_falling_Single": true,
+  "original_input_surface_retained_during_fluid_playback": true,
+  "second_sleep_click_starts_direct_roll": true,
+  "second_sleep_click_changes_pose": true,
+  "static_sleep_and_roll_share_original_png_renderer": true,
+  "third_sleep_click_rolls_back": true,
+  "passed": true
+}

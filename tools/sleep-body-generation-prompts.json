@@ -1,0 +1,37 @@
+{
+  "tool": "built-in imagegen",
+  "outputs": [
+    {
+      "key": "body_content",
+      "refs": [
+        "D:/code_project/大卡猫/tools/keyframes/picture_style/rise_low.png",
+        "D:/code_project/大卡猫/picture/Screenshot 2026-09-28 223842.jpg"
+      ],
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target: existing transparent adult fat desktop cat, crouched pose. Image 2 is expression reference only. Change ONLY facial expression on image 1: relaxed fully closed eyes with soft dark reddish lids like image 2, separate horizontal eyebrows, a tiny happy open mouth with pink tongue like image 2, gently blushing cheeks. Keep the SAME face dimensions, round full cheeks, head position, horn, hair, ornaments, adult fat body, ALL paw locations, tail, outline weight, canvas and crop of image 1. No hand, no human, no background, no new limbs, no chin elongation. Preserve exact colors and transparent background.",
+      "asset": "tools/keyframes/picture_style/body_content.png"
+    },
+    {
+      "key": "sleep_roll_between_side_mid",
+      "refs": [
+        "D:/code_project/大卡猫/tools/keyframes/picture_style/sleep_roll_side.png",
+        "D:/code_project/大卡猫/tools/keyframes/picture_style/sleep_roll_mid.png"
+      ],
+      "prompt": "Use case: stylized-concept. Produce one transparent sprite intermediate pose EXACTLY halfway from image 1's side sleeping pose to image 2's rolling more onto the back. Same adult very fat cat identity, compact large belly, long layered silver hair, thin dark brown outline, gold horn, blue branch ornaments. Head stays at LEFT, tail stays at RIGHT, lower belly resting on SAME ground height. Slight gradual roll, not a different viewpoint. Eyes remain peacefully closed, small satisfied mouth. Exactly four anatomical paws total: two tucked front paws, two bent hind paws with pink pads, no extra limbs. Match proportions, color palette and hair to both provided sprites. Keep full character with margin, transparent background.",
+      "asset": "tools/keyframes/picture_style/sleep_roll_between_side_mid.png"
+    },
+    {
+      "key": "sleep_roll_between_mid_back",
+      "refs": [
+        "D:/code_project/大卡猫/tools/keyframes/picture_style/sleep_roll_mid.png",
+        "D:/code_project/大卡猫/tools/keyframes/picture_style/sleep_belly_up.png"
+      ],
+      "prompt": "Use case: stylized-concept. Produce one transparent sprite intermediate pose EXACTLY halfway from image 1's near-back sleeping pose to image 2's fully belly-up sleeping pose. Same adult very fat cat identity, compact large belly, long layered silver hair, thin dark brown outline, gold horn, blue branch ornaments. Head stays at LEFT, tail stays at RIGHT, lower belly resting on SAME ground height. Only a slight additional roll and small head-angle change. Eyes remain peacefully closed, small satisfied mouth. Exactly four anatomical paws total: two tucked front paws, two bent hind paws with pink pads, no extra limbs. Match proportions, color palette and hair to both provided sprites. Keep full character with margin, transparent background.",
+      "asset": "tools/keyframes/picture_style/sleep_roll_between_mid_back.png"
+    }
+  ],
+  "refinement": {
+    "prompt": "Use case: precise-object-edit. Image 1 is the target. Image 2 is ONLY the facial-expression reference. Keep EVERYTHING on image 1 identical, including canvas, pose, hair, round full cheeks, body, paws, tail, blue ornaments and horn. Revise ONLY its closed eyelids and mouth to match image 2 more closely: softly relaxed, almost straight slightly down-sloping closed eyelid strokes, NOT upward arched laughing eyes, NOT a wide happy smile. Tiny slightly open relaxed cat mouth with a little pink tongue, approximately half the present mouth opening height. Separate short bar eyebrows as before, faint cheeks. No hand, no extra limbs, transparent background.",
+    "asset": "tools/keyframes/picture_style/body_content.png",
+    "selected": true
+  }
+}

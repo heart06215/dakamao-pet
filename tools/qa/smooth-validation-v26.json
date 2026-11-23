@@ -1,0 +1,13 @@
+{
+  "sequences": 55,
+  "dense_frames": 3571,
+  "all_registered_states_use_original_png_renderer": true,
+  "roll_is_exact_reverse": true,
+  "flip_frames": 551,
+  "ear_bounce_frames": 120,
+  "anatomical_drawings": 43,
+  "unique_roll_frames": 551,
+  "anchor_shake_reduction": 0.27174591127582604,
+  "issues": [],
+  "pose_revision": "v26_whole_body"
+}

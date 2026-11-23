@@ -1,0 +1,473 @@
+{
+  "registered_folders": 55,
+  "picture_style_keyframes": 75,
+  "total_frames": 1803,
+  "frame_resolution": 512,
+  "blink_frames": 26,
+  "blink_frame_ms": 10,
+  "blink_fps": 100.0,
+  "blink_duration_ms": 260,
+  "blink_body_fixed": true,
+  "scene_blink_folders": [
+    "walk/west_blink_single",
+    "walk/east_blink_single",
+    "raised_static/hold_b",
+    "sleep/curled_touch_single",
+    "sleep/belly_touch_single"
+  ],
+  "mouth_cycle_frames": 13,
+  "mouth_unique_frames": 10,
+  "mouth_face_body_fixed": true,
+  "touch_closed_eye_frames": {
+    "left": [
+      "frame_020.png",
+      "frame_021.png",
+      "frame_022.png",
+      "frame_023.png"
+    ],
+    "right": [
+      "frame_025.png",
+      "frame_026.png",
+      "frame_027.png",
+      "frame_028.png"
+    ]
+  },
+  "touch_mouth_open_cycles": {
+    "touch": 0,
+    "purr": 1
+  },
+  "body_touch_face_only": true,
+  "body_touch_closed_eyes": true,
+  "front_touch_bounds": [
+    106,
+    138,
+    406,
+    496
+  ],
+  "front_touch_split_y": 317.0,
+  "sleep_direct_switch_seams": 4,
+  "folder_frames": {
+    "common/fall_single": 46,
+    "common/falling_single": 15,
+    "default/breathe_b": 24,
+    "idel/blink_a": 11,
+    "idel/blink_b": 4,
+    "idel/blink_c": 11,
+    "idel/doze_a": 11,
+    "idel/doze_b": 4,
+    "idel/doze_c": 11,
+    "idel/groom_single": 25,
+    "idel/look_around_single": 81,
+    "idel/sleep_single": 88,
+    "idel/stretch_single": 51,
+    "idel/tail_swish_single": 73,
+    "idel/yawn_single": 33,
+    "raised_dynamic/wiggle_single": 16,
+    "raised_static/hold_a": 11,
+    "raised_static/hold_b": 50,
+    "raised_static/hold_c": 6,
+    "say/talk_b": 4,
+    "shutdown/bye_single": 11,
+    "sleep/belly_a": 79,
+    "sleep/belly_b": 8,
+    "sleep/belly_c": 103,
+    "sleep/belly_touch_single": 62,
+    "sleep/curled_a": 43,
+    "sleep/curled_b": 8,
+    "sleep/curled_c": 67,
+    "sleep/curled_touch_single": 74,
+    "sleep/flip_to_belly_single": 37,
+    "sleep/flip_to_curled_single": 37,
+    "sleep/zzz_b": 8,
+    "startup/boot_single": 11,
+    "switch_down/down_single": 5,
+    "switch_hunger/hungry_single": 5,
+    "switch_thirsty/thirsty_single": 5,
+    "switch_up/up_single": 5,
+    "touch_body/touch_a": 31,
+    "touch_body/touch_b": 25,
+    "touch_body/touch_c": 31,
+    "touch_head/purr_a": 21,
+    "touch_head/purr_b": 113,
+    "touch_head/purr_c": 21,
+    "touch_head/touch_a": 21,
+    "touch_head/touch_b": 106,
+    "touch_head/touch_c": 21,
+    "walk/east_a": 33,
+    "walk/east_b": 41,
+    "walk/east_blink_single": 26,
+    "walk/east_c": 33,
+    "walk/west_a": 33,
+    "walk/west_b": 41,
+    "walk/west_blink_single": 26,
+    "walk/west_c": 33,
+    "work/work_b": 4
+  },
+  "matched_transition_seams": 32,
+  "neutral_idle_actions": 6,
+  "stationary_sleep_loops": 3,
+  "touch_palette_medians": {
+    "front_neutral": [
+      239,
+      232,
+      232
+    ],
+    "tilt_early_left": [
+      238,
+      232,
+      231
+    ],
+    "tilt_soft_left": [
+      239,
+      233,
+      232
+    ],
+    "tilt_middle_left": [
+      238,
+      233,
+      233
+    ],
+    "tilt_far_left": [
+      239,
+      232,
+      233
+    ],
+    "tilt_early_right": [
+      238,
+      231,
+      231
+    ],
+    "tilt_soft_right": [
+      240,
+      233,
+      233
+    ],
+    "tilt_middle_right": [
+      240,
+      234,
+      234
+    ],
+    "tilt_far_right": [
+      239,
+      235,
+      236
+    ],
+    "touch_smile_right": [
+      239,
+      232,
+      232
+    ]
+  },
+  "touch_material_palette": {
+    "tilt_early_left": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "tilt_early_right": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "tilt_far_left": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "tilt_far_right": [
+      [
+        107.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "tilt_middle_left": [
+      [
+        108.0,
+        104.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        245.0
+      ]
+    ],
+    "tilt_middle_right": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "tilt_soft_left": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "tilt_soft_right": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        232.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "touch_closed_left": [
+      [
+        108.0,
+        104.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "touch_closed_right": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "touch_mouth_closed": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "touch_mouth_half": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "touch_mouth_quarter": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        233.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ],
+    "touch_smile_right": [
+      [
+        108.0,
+        105.0,
+        104.0
+      ],
+      [
+        211.0,
+        197.0,
+        200.0
+      ],
+      [
+        239.0,
+        233.0,
+        232.0
+      ],
+      [
+        251.0,
+        246.0,
+        244.0
+      ]
+    ]
+  },
+  "sha256": "922f39014143ebe37f4f6524885ad1e2a1e22dc51a355583e6807df7b75ce9d2",
+  "issues": []
+}
