@@ -1,0 +1,18 @@
+{
+  "tool": "built-in image_gen",
+  "reference_scope": "Existing approved sleeping sprites; upstream character rights remain separate",
+  "early": {
+    "references": [
+      "tools/base_frames/sleep/flip_to_belly_single/frame_02.png",
+      "tools/base_frames/sleep/flip_to_belly_single/frame_03.png"
+    ],
+    "prompt": "Use case: identity-preserve. Asset: desktop pet animation sprite sheet, transparent RGBA. Create a sheet of exactly 4 full-body frames in 2 columns and 2 rows, equal cells, reading order. These are new anatomical in-between drawings at 20%,40%,60%,80% between reference 1 (sleeping curled sideways with paws tucked) and reference 2 (rolling onto side/back with belly and pads showing). References are mandatory exact character/style/color/proportion guides. Preserve the adult very fat rounded torso, short normal limbs, same face and white silver layered bangs, gold single horn and blue ornaments, thin dark brown/black ink outlines, closed eyes. This is a slow continuous roll of one cat, no walking or stretching. Front paws curl toward chest as body turns, two hind paws gradually expose pads. EXACTLY four limbs, two front and two back, some occluded naturally. No fifth paw, no elongated belly, no noodle body, no sharp jaw, no baby shape, no changed hair length. Keep head at left and tail at right, body volume and ground contact stable across all four frames. Reference 1 starts and reference 2 ends the segment, output only four distinct intermediate poses. All frames identical character scale and lighting, ample transparent margins, high-resolution crisp outlines, no text, no shadows/background/floor/grid."
+  },
+  "late": {
+    "references": [
+      "tools/base_frames/sleep/flip_to_belly_single/frame_06.png",
+      "tools/base_frames/sleep/flip_to_belly_single/frame_07.png"
+    ],
+    "prompt": "Use case: identity-preserve. Asset: transparent RGBA desktop pet animation sprite sheet. Exactly 4 full-body intermediate drawings in equal 2 columns x 2 rows cells, reading order, corresponding to 20%,40%,60%,80% between reference 1 and reference 2. One very fat adult white silver fantasy cat completing a small roll from near-back sleeping to fully belly-up sleeping. Exact reference character, proportions, white silver palette and crisp thin dark brown/black outlines. Keep plump round torso volume, same head size, layered bangs and hair length, single gold horn, blue ornaments, eyes closed. Head remains at left, tail at right, same stationary ground contact. Head gently rotates backward/up toward reference 2 while torso rotates a little and two hind feet reposition subtly; two short front paws stay tucked over chest. Anatomically EXACTLY four limbs, TWO front paws and TWO hind feet with pink pads, no ghost paws or duplicated face or elongated stretched torso. All images same scale/camera/exposure. Do not add smiles/open eyes, no baby shape, no pointed jaw. Output only four distinct intermediates; preserve transparent margins; no text, frame borders, background, floor, grid, cast shadow."
+  }
+}

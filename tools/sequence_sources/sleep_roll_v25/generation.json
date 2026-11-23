@@ -1,0 +1,40 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-21",
+  "assets": [
+    "entry_sheet.png",
+    "middle_sheet.png",
+    "curl_sheet.png",
+    "pads_sheet.png",
+    "occlusion_sheet.png"
+  ],
+  "prompts": {
+    "entry": "Use case: identity-preserve. Production animation sheet on genuinely transparent RGBA background, 3 columns x 2 rows, SIX equally sized cells with wide gutters, no labels/text. Draw six distinct intermediate poses in chronological reading order BETWEEN reference1 and reference2 (do not repeat either endpoint). This is the INITIAL PREPARATION of one slow sleeping cat rollover: start with paws planted like reference1, progressively curl the two short FRONT paws into its chest while leaning head and shoulders slightly toward camera, keeping rear haunches resting. Keep the same camera, head at LEFT tail RIGHT, exact same white-silver fat ADULT cat, round chubby cheeks, layered hair length, gold single horn, blue ornaments, closed eyes, fine dark brown/black ink lines, original fur colors. Exactly FOUR anatomical limbs TOTAL: two forepaws attached to shoulders immediately behind the head; two hind paws attached to the rear pelvis at the right. Far hind paw may stay hidden behind the fat haunch, NEVER invent a visible fifth foot. Body stays very plump and compact, no elongated torso. Minimal subtle change from cell to cell, no standing or stretching or head lifting, no pink pads on forepaws. Full character contained within each cell, identical scale/ground line, ample transparent margins. No floor, cast shadow, glow, blur, background, borders, duplicate paws or extra tails. Sharp consistent linework.",
+    "middle": "Use case: identity-preserve. Production animation sheet on genuine transparent RGBA, 3 columns x 2 rows, SIX evenly sized cells and wide empty gutters, no labels/text. Draw six chronologically consecutive intermediate poses BETWEEN reference1 and reference2, no endpoint repeats. One slow sleeping cat rolls from SIDE to BACK. TWO short FRONT paws remain curled on chest adjacent to head at LEFT throughout; TWO HIND feet stay connected to hip at RIGHT, slowly rotate upward, their pink pads become more frontal as belly rolls toward camera. The hind feet must NEVER migrate to neck or become front paws. Exactly four limbs, no extra foot, no reappearing duplicate planted paw under belly. Head remains LEFT, tail RIGHT, identical camera/size and baseline for every frame. Preserve exact fat ADULT white silver cat from both references, very rotund compact torso, same head size, layered bangs and hair length, gold single horn, blue ornaments, closed sleeping eyes, subtle brown/black clean outlines, no color/lighting change. Body weight stays on side/back, small natural roll, front paws follow shoulder motion, hind legs follow pelvis; slight delayed tail movement. No standing/head lifting/sitting/stretching, no long rubber limbs, no flattened/elongated torso. Each cell complete whole character with wide transparent margin; no floor, shadows, glow, blur or background. Very small consistent pose changes cell to cell, crisp production sprite art.",
+    "curl": "Use case: identity-preserve, anatomical in-between drawings. Transparent RGBA sprite sheet, 3 columns x 2 rows with SIX complete cats, wide clear gutters, no text. Output ONLY six consecutive intermediate drawings between image1 and image2, do not duplicate endpoints. This critical segment: a sleeping compact extremely fat adult cat gradually rolls its chest toward camera, slowly lifts/curls BOTH front paws from under chin toward chest, while both hind legs remain attached to haunch at RIGHT and rotate slightly. Forepaws must stay at LEFT behind face; hind feet at RIGHT. Far forepaw rises gradually by SMALL increments, never teleports from floor to shoulder; near hind foot gradually comes forward from under haunch, still on right half. Exactly four short limbs total, two forepaws two hind paws. Pink hind pads are NOT yet visible: retain furry tops of hind feet. No fifth paw, no tail mistaken for leg. Preserve exact reference face, closed eyes, white silver hair length, fat rounded belly, single gold horn, blue ornaments, fine dark brown ink outlines, palette and proportions. Head at left, tail at right, stationary baseline and identical camera/scale. No sitting or standing or stretching, no thin/long body, no ghost limbs. Modest smooth pose change per cell. Whole cats fully inside cells with transparent margins. No background, shadow, glow, labels or borders.",
+    "pads": "Use case: identity-preserve. Transparent RGBA animation sprite sheet: SIX full cat drawings in 3 columns x 2 rows, equal cells and wide empty gutters, NO text. Draw six distinct small intermediate poses BETWEEN image1 and image2 in reading order; no endpoint repeats. Sleeping fat adult cat rolls from partly side to more back. Both short forepaws remain folded near the chest at LEFT next to head; they make only tiny motion. Both hind feet belong at the RIGHT hip and gradually ROTATE outward/up: the viewer first sees furry hind toes, then a sliver of pink paw pad, then progressively more pad until image2. No hind foot jumps to the chest, no forepaw jumps to hip, no fifth foot or ghost paw under belly. Head LEFT, tail RIGHT, same camera and ground line and size across cells. Precisely preserve references' white silver fluffy hair length, closed eyes, plump chubby face, big very round adult belly, gold horn, blue ornaments, fine dark brown/black outlines and white palette. Volume-preserving compact torso, no rubber limb or long thin body, no sitting/standing/head lifting. Whole cat fits each cell with transparent margins, no background, shadow, glow, text, borders. Small physically continuous leg rotation in each successive cell.",
+    "occlusion": "Use case: identity-preserve anatomical animation correction. Transparent RGBA sheet, exactly FOUR cells 2 columns x 2 rows, full cat each cell, large transparent gutters, no text. Use reference1 as starting pose and reference2 as ending pose. Draw FOUR intermediate OCCLUSION poses between them. Critical: the FAR front paw (the lower-left planted paw in reference1) folds BEHIND the near front paw and the thick chest mane, then emerges ABOVE the near paw toward the right as in reference2. It must never move across the face or eye. Cell1: far forepaw tip partly covered by near forearm. Cell2: far forepaw COMPLETELY HIDDEN behind near forearm/chest hair, only ONE front paw visible; exactly TWO hind feet visible at right. Cell3: far forepaw still FULLY HIDDEN behind mane, near front paw curled at chest as torso rolls a little. Cell4: only far forepaw TIP reappears from mane just above the near paw. The near forepaw stays around chest below face, both hind paws stay attached to right hip, sleeping head left, tail right. TOTAL anatomical limbs remain four but the hidden far paw must NOT be drawn as an extra limb on floor or head. Preserve fat adult compact round body, chubby face, white silver layered hair length, closed eyes, gold horn, blue ornaments, exact reference palette and thin dark ink. Minimal motion and fixed scale/baseline/camera, no stretching/standing, no new open eyes, no extra feet, no long arms. All figures fully contained with ample transparent margin. No background, glow, shadow, floor, labels or borders."
+  },
+  "references": {
+    "entry": [
+      "tools/base_frames/sleep/flip_to_belly_single/frame_01.png",
+      "tools/base_frames/sleep/flip_to_belly_single/frame_02.png"
+    ],
+    "middle": [
+      "tools/base_frames/sleep/flip_to_belly_single/frame_03.png",
+      "tools/base_frames/sleep/flip_to_belly_single/frame_06.png"
+    ],
+    "curl": [
+      "tools/sequence_sources/sleep_roll_v24/early_01.png",
+      "tools/sequence_sources/sleep_roll_v24/early_02.png"
+    ],
+    "pads": [
+      "tools/sequence_sources/sleep_roll_v24/early_02.png",
+      "tools/sequence_sources/sleep_roll_v24/early_03.png"
+    ],
+    "occlusion": [
+      "occlusion_start_reference.png",
+      "occlusion_end_reference.png"
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+[
+  {
+    "base": 0
+  },
+  {
+    "base": 1
+  },
+  {
+    "base": 2
+  },
+  {
+    "base": 3
+  },
+  {
+    "base": 4
+  },
+  {
+    "between": [
+      4,
+      5
+    ],
+    "fraction": 0.16666666666666666
+  },
+  {
+    "between": [
+      4,
+      5
+    ],
+    "fraction": 0.3333333333333333
+  },
+  {
+    "between": [
+      4,
+      5
+    ],
+    "fraction": 0.5
+  },
+  {
+    "between": [
+      4,
+      5
+    ],
+    "fraction": 0.6666666666666666
+  },
+  {
+    "sheet": "hide",
+    "cell": 0
+  },
+  {
+    "sheet": "hide",
+    "cell": 1
+  },
+  {
+    "sheet": "hide",
+    "cell": 2
+  },
+  {
+    "sheet": "hide",
+    "cell": 3
+  },
+  {
+    "sheet": "hide",
+    "cell": 4
+  },
+  {
+    "sheet": "hide",
+    "cell": 5
+  },
+  {
+    "between": [
+      4,
+      5
+    ],
+    "fraction": 0.8333333333333334
+  },
+  {
+    "base": 5
+  },
+  {
+    "base": 6
+  },
+  {
+    "base": 7
+  },
+  {
+    "base": 8
+  },
+  {
+    "base": 9
+  },
+  {
+    "base": 10
+  },
+  {
+    "base": 11
+  },
+  {
+    "base": 12
+  },
+  {
+    "between": [
+      12,
+      13
+    ],
+    "fraction": 0.14285714285714285
+  },
+  {
+    "between": [
+      12,
+      13
+    ],
+    "fraction": 0.2857142857142857
+  },
+  {
+    "between": [
+      12,
+      13
+    ],
+    "fraction": 0.42857142857142855
+  },
+  {
+    "between": [
+      12,
+      13
+    ],
+    "fraction": 0.5714285714285714
+  },
+  {
+    "between": [
+      12,
+      13
+    ],
+    "fraction": 0.7142857142857143
+  },
+  {
+    "between": [
+      12,
+      13
+    ],
+    "fraction": 0.8571428571428571
+  },
+  {
+    "base": 13
+  },
+  {
+    "base": 14
+  },
+  {
+    "base": 15
+  },
+  {
+    "base": 16
+  },
+  {
+    "sheet": "settle",
+    "cell": 0
+  },
+  {
+    "sheet": "settle",
+    "cell": 1
+  },
+  {
+    "sheet": "settle",
+    "cell": 2
+  },
+  {
+    "sheet": "settle",
+    "cell": 3
+  },
+  {
+    "sheet": "settle",
+    "cell": 4
+  },
+  {
+    "sheet": "settle",
+    "cell": 5
+  },
+  {
+    "base": 17
+  },
+  {
+    "base": 18
+  },
+  {
+    "base": 19
+  }
+]
