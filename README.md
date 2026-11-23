@@ -34,6 +34,10 @@
 
 更完整的实现说明、动作衔接约束与逐轮修改记录见 [项目开发文档.md](项目开发文档.md)。
 
+## 下载与运行
+
+从 [Releases](https://github.com/heart06215/dakamao-pet/releases) 下载 `大卡猫.exe`，双击即可运行。这是单文件自包含的便携版，运行时与动画素材都打包在内部，不需要安装 .NET。
+
 ## 构建
 
 需要 .NET 8 SDK：
@@ -51,9 +55,9 @@ powershell -ExecutionPolicy Bypass -File tools/publish.ps1
 
 ## 动画素材
 
-**本仓库不包含动画帧和构建产物。** 程序运行依赖 `DakamaoPet/PetMod` 下的 5494 张 PNG（约 881 MB），以及 `tools` 下约 470 MB 的源帧与校验视频；这些文件体积超出常规 Git 仓库的合适范围，未随仓库分发，克隆后需自行重建素材才能运行。
+本仓库包含**完整的动画帧与源素材**（`DakamaoPet/PetMod` 的 5498 个文件、`tools` 下的关键帧与序列源，合计约 1.3 GB），克隆后无需额外下载即可直接构建运行；仓库体积较大，克隆需要一点时间。
 
-素材重建流程（Python 依赖见 `tools/animation_requirements.txt`，使用 `.venv-animation` 环境）：
+如需从关键帧重新生成播放帧，流程如下（Python 依赖见 `tools/animation_requirements.txt`，使用 `.venv-animation` 环境）：
 
 ```powershell
 .\.venv-animation\Scripts\python.exe tools/head_palette.py

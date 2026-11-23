@@ -13,13 +13,5 @@ release/
 __pycache__/
 *.pyc
 
-# ── 动画素材：本仓库不分发（5494 张 PNG，约 881 MB）────
-DakamaoPet/PetMod/**/*.png
-
-# ── 构建用源帧与校验视频：仅本地保留（约 470 MB）──────
-tools/base_frames/
-tools/keyframes/
-tools/sequence_sources/
+# ── 校验视频：体积大，仅本地保留（约 148 MB）──────────
 tools/qa/mp4/
-tools/qa/*.png
-tools/qa/*.jpg
