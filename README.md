@@ -36,7 +36,9 @@
 
 ## 下载与运行
 
-从 [Releases](https://github.com/heart06215/dakamao-pet/releases) 下载 `大卡猫.exe`，双击即可运行。这是单文件自包含的便携版，运行时与动画素材都打包在内部，不需要安装 .NET。
+从 [Releases v0.2.0](https://github.com/heart06215/dakamao-pet/releases/tag/v0.2.0) 下载 [`DakamaoPet-0.2.0-win-x64.exe`](https://github.com/heart06215/dakamao-pet/releases/download/v0.2.0/DakamaoPet-0.2.0-win-x64.exe)（即 `大卡猫.exe`，954 MB），双击即可运行。单文件自包含：.NET 8 运行时与全部动画素材都打包在 exe 内部，不需要安装任何环境。
+
+SHA256：`36c30650d77d8cc8b16c533eded58778845b0853964f318133bc686002a8ecee`
 
 ## 构建
 
