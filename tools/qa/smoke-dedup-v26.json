@@ -1,0 +1,28 @@
+{
+  "exe": "release/DakamaoPet-0.3.0-win-x64.exe",
+  "sha256": "F423CAD5E9D746C91235BE28930A42A42C3AF3DB2089CB4ADA1F80B6DDF84028",
+  "length": 575661388,
+  "asset_mode": "dedup",
+  "asset_files": 5498,
+  "unique_asset_files": 3026,
+  "unique_asset_bytes": 504447939,
+  "layout_version": "1FFC6E332BF519F1",
+  "first_run": {
+    "asset_store_ms": 5962,
+    "entries": 5498,
+    "hardlinks": 5498,
+    "copies": 0,
+    "hash_mode": "full",
+    "start_to_window_ready_ms": 2271,
+    "start_to_sequences_ready_ms": 9347
+  },
+  "second_run": {
+    "asset_store": "reuse",
+    "hash_mode": "cached",
+    "start_to_window_ready_ms": 1347
+  },
+  "sequences_registered": 55,
+  "feature_check": "tools/qa/feature-check-v26.json",
+  "tested_at": "2026-11-24T19:35:42+08:00",
+  "passed": true
+}
