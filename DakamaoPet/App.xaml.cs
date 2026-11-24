@@ -48,8 +48,30 @@ namespace DakamaoPet
             try
             {
                 Directory.CreateDirectory(DataDirectory);
-                File.AppendAllText(Path.Combine(DataDirectory, "app.log"),
-                    DateTimeOffset.Now.ToString("O") + " " + message + Environment.NewLine);
+                var path = Path.Combine(DataDirectory, "app.log");
+                lock (LogLock)
+                {
+                    if (++_logWrites % 200 == 0)
+                        RotateLog(path);
+                    File.AppendAllText(path,
+                        DateTimeOffset.Now.ToString("O") + " " + message + Environment.NewLine);
+                }
+            }
+            catch (IOException) { }
+            catch (UnauthorizedAccessException) { }
+        }
+
+        private static readonly object LogLock = new();
+        private static int _logWrites;
+        private const long MaxLogBytes = 1_000_000;
+
+        private static void RotateLog(string path)
+        {
+            try
+            {
+                var info = new FileInfo(path);
+                if (info.Exists && info.Length > MaxLogBytes)
+                    File.Move(path, path + ".1", true);
             }
             catch (IOException) { }
             catch (UnauthorizedAccessException) { }

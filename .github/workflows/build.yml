@@ -1,0 +1,49 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+          cache: true
+          cache-dependency-path: |
+            DakamaoPet/DakamaoPet.csproj
+            tools/feature-check/FeatureCheck.csproj
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tools/animation_requirements.txt
+
+      - name: Restore
+        run: dotnet restore tools/feature-check/FeatureCheck.csproj
+
+      - name: Build host and feature-check
+        run: dotnet build tools/feature-check/FeatureCheck.csproj -c Release --no-restore
+
+      - name: Install animation dependencies
+        run: pip install -r tools/animation_requirements.txt
+
+      - name: Validate picture style
+        run: python tools/validate_picture_style.py
+
+      - name: Validate sequence playback
+        run: python tools/validate_smooth_playback.py
+
+      - name: Build deduplicated publish assets
+        run: python tools/build_dedup_assets.py --out .build/petmod-dedup --verify

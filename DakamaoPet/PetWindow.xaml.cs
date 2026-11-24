@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -115,6 +114,7 @@ namespace DakamaoPet
             InitializeComponent();
             LoadPetSize();
             InitializeDesktopSettings();
+            InitializePositionTracking();
             Core = new GameCore
             {
                 Controller = this,
@@ -123,12 +123,23 @@ namespace DakamaoPet
             Loaded += PetWindow_Loaded;
             ContentRendered += (_, _) =>
             {
-                var desktop = GetDesktopWorkArea();
-                Left = Math.Max(desktop.Left, desktop.Right - ActualWidth - 24);
-                Top = Math.Max(desktop.Top, desktop.Bottom - ActualHeight);
-                App.WriteLog("READY window=" + ActualWidth + "x" + ActualHeight);
+                RestorePosition();
+                InitializeTray();
+                App.WriteLog("READY window=" + ActualWidth + "x" + ActualHeight
+                    + " left=" + Left.ToString("F0") + " top=" + Top.ToString("F0"));
             };
-            Closed += (_, _) => { CancelWalk(); CancelFall(); _swayTimer?.Stop(); _previewTimer?.Stop(); StopFluidPlayback(); CloseDesktopSettings(); };
+            Closed += (_, _) =>
+            {
+                FlushPositionSave();
+                FlushSizeSettings();
+                CloseTray();
+                CancelWalk();
+                CancelFall();
+                _swayTimer?.Stop();
+                _previewTimer?.Stop();
+                StopFluidPlayback();
+                CloseDesktopSettings();
+            };
 
             AddHandler(PreviewMouseLeftButtonDownEvent, new MouseButtonEventHandler((_, e) =>
             {
@@ -178,7 +189,8 @@ namespace DakamaoPet
 
         private async void PetWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var modDir = new DirectoryInfo(Path.Combine(AppContext.BaseDirectory, "PetMod"));
+            // 发布包只带唯一内容；这里在后台还原成引擎可直接读取的目录树。
+            var modDir = new DirectoryInfo(await Task.Run(() => AssetStore.Prepare(AppContext.BaseDirectory)));
             if (!File.Exists(Path.Combine(modDir.FullName, "info.lps")))
                 throw new FileNotFoundException("没有找到角色素材，请重新打开完整的大卡猫程序。");
             var petInfo = new LpsDocument(File.ReadAllText(Path.Combine(modDir.FullName, "info.lps")));
@@ -186,10 +198,8 @@ namespace DakamaoPet
             ConfigureTouchSplit(Path.Combine(modDir.FullName, "pet", "dakamao",
                 "default", "breathe_b", "frame_01.png"));
 
-            using var assetHash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
-            foreach (var file in Directory.GetFiles(Path.Combine(modDir.FullName,"pet"), "*.png", SearchOption.AllDirectories).OrderBy(x => x))
-                assetHash.AppendData(File.ReadAllBytes(file));
-            GraphCore.CachePath = Path.Combine(App.DataDirectory, "cache", Convert.ToHexString(assetHash.GetHashAndReset())[..16]);
+            GraphCore.CachePath = Path.Combine(App.DataDirectory, "cache",
+                AssetStore.GetCacheKey(Path.Combine(modDir.FullName, "pet")));
 
             // Match the rebuilt source tiles so the engine does not resample
             // them while assembling its atlas. Layout remains 500 logical units.
@@ -239,9 +249,11 @@ namespace DakamaoPet
                 var frameIndex = 0;
                 var folder = AnimationTiming.RootElement.GetProperty("frame_ms").TryGetProperty(animation.GraphInfo.Name + "/" + animation.GraphInfo.Animat, out var customTimes)
                     ? customTimes : default;
+                var timedFrames = folder.ValueKind == JsonValueKind.Array ? folder.GetArrayLength() : 0;
                 foreach (var frame in animation.Animations)
                 {
-                    frame.Time = folder.ValueKind == JsonValueKind.Array ? folder[frameIndex].GetInt32() : duration;
+                    // 配置被改短时退回整段时长，避免索引越界导致启动失败。
+                    frame.Time = frameIndex < timedFrames ? folder[frameIndex].GetInt32() : duration;
                     frameIndex++;
                 }
             }
@@ -519,7 +531,6 @@ namespace DakamaoPet
             _falling = false;
             _landing = true;
             App.WriteLog("LAND top=" + Top.ToString("F1"));
-            var main = _main;
             DisplayNamedAnimation("land", AnimatType.Single, () =>
             {
                 if (_landing && sequence == _fallSequence)
@@ -540,13 +551,15 @@ namespace DakamaoPet
             _fallSequence++;
         }
 
+        private const uint MonitorDefaultToNearest = 2;
+
         private Rect GetDesktopWorkArea()
         {
             var source = PresentationSource.FromVisual(this);
             var window = new WindowInteropHelper(this).Handle;
             if (source?.CompositionTarget == null || window == IntPtr.Zero)
                 return SystemParameters.WorkArea;
-            var monitor = MonitorFromWindow(window, 2); // nearest display
+            var monitor = MonitorFromWindow(window, MonitorDefaultToNearest);
             var info = new MonitorInfo { Size = Marshal.SizeOf<MonitorInfo>() };
             if (monitor == IntPtr.Zero || !GetMonitorInfo(monitor, ref info))
                 return SystemParameters.WorkArea;
@@ -654,7 +667,8 @@ namespace DakamaoPet
                 ("touch_body_touch", "摸身"), ("idel_yawn", "哈欠"),
                 ("__exit", "退出"), ("idel_sleep", "睡觉"),
                 ("idel_blink", "眨眼"), ("__size", "大小"),
-                ("__settings", "设定"), ("__notice", "声明")
+                ("__settings", "设定"), ("__notice", "声明"),
+                ("__home", "主屏")
             };
             var playing = _previewSequence != null || _sleepAction != null || _walking;
             RingCenterButton.Content = playing ? "停止" : "收起";
@@ -696,6 +710,11 @@ namespace DakamaoPet
             if (key == "__size")
             {
                 ShowSizePopup();
+                return;
+            }
+            if (key == "__home")
+            {
+                MoveToPrimaryScreen();
                 return;
             }
             if (key == "__walk")

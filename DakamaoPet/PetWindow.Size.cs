@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: CC-BY-NC-SA-4.0
-// 本项目有权许可的新增贡献适用；上游鸣潮/大卡猫形象的 CC 授权未确认。
+// 本项目有权许可的新增贡献适用；角色形象授权记录见 THIRD-PARTY-NOTICES.md。
 // 第三方组件保留原许可，范围及公益声明见《项目开发文档》。
 using System;
 using System.IO;
@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls.Primitives;
+using System.Windows.Threading;
 using System.Linq;
 
 namespace DakamaoPet;
@@ -16,6 +17,7 @@ public partial class PetWindow
     private double _petScale = 1;
     private static readonly double[] SizeStops = { 60, 100, 160, 200, 300 };
     private bool _loadingSize = true;
+    private DispatcherTimer? _sizeSaveTimer;
     private static string SizeSettingsPath => Path.Combine(App.DataDirectory, "size.json");
 
     private void LoadPetSize()
@@ -39,7 +41,7 @@ public partial class PetWindow
         SizeSlider.AddHandler(Thumb.DragStartedEvent, new DragStartedEventHandler((_, _) =>
             App.WriteLog($"SIZE drag_started percent={SizeSlider.Value:F0}")));
         SizeSlider.AddHandler(Thumb.DragCompletedEvent, new DragCompletedEventHandler((_, _) =>
-            App.WriteLog($"SIZE drag_completed percent={SizeSlider.Value:F0}")));
+            FlushSizeSettings()));
     }
 
     private void SizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -62,8 +64,44 @@ public partial class PetWindow
             Top = Math.Clamp(floor - Height, desktop.Top, Math.Max(desktop.Top, desktop.Bottom - Height));
             if (_walking) Top = desktop.Bottom - Height;
         }
-        Directory.CreateDirectory(App.DataDirectory);
-        File.WriteAllText(SizeSettingsPath, JsonSerializer.Serialize(_petScale));
+        // 拖动滑块会连续触发；防抖后只写一次，避免每秒几十次磁盘写入。
+        ScheduleSizeSave();
+    }
+
+    private void ScheduleSizeSave()
+    {
+        if (_sizeSaveTimer == null)
+        {
+            _sizeSaveTimer = new DispatcherTimer(DispatcherPriority.Background)
+            {
+                Interval = TimeSpan.FromMilliseconds(400)
+            };
+            _sizeSaveTimer.Tick += (_, _) =>
+            {
+                _sizeSaveTimer.Stop();
+                SaveSizeNow();
+            };
+        }
+        _sizeSaveTimer.Stop();
+        _sizeSaveTimer.Start();
+    }
+
+    private void FlushSizeSettings()
+    {
+        _sizeSaveTimer?.Stop();
+        if (_petScale > 0)
+            SaveSizeNow();
+    }
+
+    private void SaveSizeNow()
+    {
+        try
+        {
+            Directory.CreateDirectory(App.DataDirectory);
+            File.WriteAllText(SizeSettingsPath, JsonSerializer.Serialize(_petScale));
+        }
+        catch (IOException) { }
+        catch (UnauthorizedAccessException) { }
         App.WriteLog($"SIZE percent={_petScale * 100:F0} window={Width:F0}x{Height:F0}");
     }
 

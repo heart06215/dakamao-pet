@@ -72,7 +72,7 @@ internal static class Program
                 var declaration=(Window)Field(window,"_declarationPage")!;
                 var declarationPanel=(StackPanel)((ScrollViewer)declaration.Content).Content;
                 var text=string.Join("\n",declarationPanel.Children.OfType<TextBlock>().Select(t=>t.Text));
-                Assert(text.Contains("不应该以任何形式付款购买") && text.Contains("鸣潮二创形象大卡猫") && text.Contains("尚未确认上游"),"declaration_scope_and_required_text",report);
+                Assert(text.Contains("不应该以任何形式付款购买") && text.Contains("鸣潮二创形象大卡猫") && text.Contains("已获得上游形象作者授权") && text.Contains("space.bilibili.com/350988058"),"declaration_scope_and_required_text",report);
                 Assert(declarationPanel.Children.OfType<TextBox>().Single().Text.StartsWith("https://github.com/"),"github_placeholder_present",report);
                 declaration.Close();
                 var main=(VPet_Simulator.Core.Main)Field(window,"_main")!; main.EventTimer.Stop();

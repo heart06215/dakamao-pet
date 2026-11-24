@@ -1,0 +1,30 @@
+{
+  "native_click_through_enabled": true,
+  "unlock_has_independent_native_window": true,
+  "unlock_button_restores_interaction": true,
+  "disabling_topmost_unlocks_pet": true,
+  "size_300_and_five_presets": true,
+  "size_160_preset": true,
+  "declaration_scope_and_required_text": true,
+  "github_placeholder_present": true,
+  "played_sleep_roll_to_belly_Single": true,
+  "played_sleep_roll_to_curled_Single": true,
+  "played_sleep_curled_C_End": true,
+  "played_touch_head_touch_A_Start": true,
+  "played_raised_static_hold_B_Loop": true,
+  "played_falling_Single": true,
+  "original_input_surface_retained_during_fluid_playback": true,
+  "second_sleep_click_starts_direct_roll": true,
+  "second_sleep_click_changes_pose": true,
+  "static_sleep_and_roll_share_original_png_renderer": true,
+  "render_frames_are_frozen_predecoded_pbgra32": true,
+  "third_sleep_click_rolls_back": true,
+  "log_directory": "C:\\Users\\27824\\AppData\\Local\\DakamaoPet",
+  "roll_playback_samples": [
+    "2026-11-24T19:22:02.7140659\u002B08:00 SMOOTH_END sleep_roll_to_belly/Single shown=392 misses=0 elapsed=4414 render_fps=105.1 max_gap_ms=32.3",
+    "2026-11-24T19:22:07.3561402\u002B08:00 SMOOTH_END sleep_roll_to_curled/Single shown=389 misses=0 elapsed=4404 render_fps=99.2 max_gap_ms=27.3",
+    "2026-11-24T19:22:21.1442080\u002B08:00 SMOOTH_END sleep_roll_to_belly/Single shown=397 misses=0 elapsed=4400 render_fps=106.8 max_gap_ms=26.5",
+    "2026-11-24T19:22:25.8209263\u002B08:00 SMOOTH_END sleep_roll_to_curled/Single shown=411 misses=0 elapsed=4401 render_fps=105.9 max_gap_ms=31.2"
+  ],
+  "passed": true
+}

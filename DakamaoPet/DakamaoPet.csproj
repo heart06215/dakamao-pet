@@ -4,13 +4,22 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>DakamaoPet</RootNamespace>
     <AssemblyName>大卡猫</AssemblyName>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <ApplicationIcon>Assets\Dakamao.ico</ApplicationIcon>
+    <!-- 只保留英文框架资源，减小自包含发布体积；界面文本由项目自带中文。 -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
+
+  <ItemGroup>
+    <!-- WinForms 只用于托盘图标；移除它注入的全局 using，避免与 WPF 类型冲突。 -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
 
   <ItemGroup>
     <!-- VPet 官方动画引擎（Apache-2.0）。若还原报缺 API，可改用预发布版 1.1.0.67-a -->
@@ -21,6 +30,19 @@
     <!-- 把动画包整体复制到输出目录，程序按 相对路径 PetMod\info.lps 加载 -->
     <None Include="PetMod\**\*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <EmbeddedResource Include="..\tools\animation_timing.json" LogicalName="DakamaoPet.animation_timing.json" />
+  </ItemGroup>
+
+  <!--
+    发布时 publish.ps1 会传入 DedupAssetsPath，改用 tools/build_dedup_assets.py
+    生成的“唯一内容 + layout.json”素材树，显著减小单文件 EXE。
+    开发构建不传该属性，仍使用可读的 PetMod 目录。
+  -->
+  <ItemGroup Condition="'$(DedupAssetsPath)' != ''">
+    <None Remove="PetMod\**\*" />
+    <None Include="$(DedupAssetsPath)\**\*"
+          Link="PetMod\%(RecursiveDir)%(Filename)%(Extension)"
+          CopyToOutputDirectory="Never"
+          CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

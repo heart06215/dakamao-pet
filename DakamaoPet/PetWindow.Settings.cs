@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: CC-BY-NC-SA-4.0
-// 仅本项目有权许可的新增贡献适用。上游鸣潮/大卡猫形象的 CC 授权未确认。
+// 仅本项目有权许可的新增贡献适用；角色形象授权记录见 THIRD-PARTY-NOTICES.md。
 // 第三方组件保留原许可；授权范围与公益声明见《项目开发文档》。
 using System;
 using System.IO;
@@ -27,6 +27,9 @@ public partial class PetWindow
     private static readonly Brush PanelBackground = new SolidColorBrush(Color.FromRgb(31,48,67));
     private static readonly Brush PanelBorder = new SolidColorBrush(Color.FromRgb(213,232,244));
     private static string DesktopSettingsPath => Path.Combine(App.DataDirectory,"desktop-settings.json");
+    private const int GwlExStyle = -20;
+    private const long WsExTransparent = 0x20;
+    private const uint SwpNoMoveNoSizeNoZOrderNoActivate = 0x37;
 
     [DllImport("user32.dll", EntryPoint="GetWindowLongPtrW", SetLastError=true)]
     private static extern IntPtr GetWindowLongPtr(IntPtr hwnd, int index);
@@ -57,10 +60,10 @@ public partial class PetWindow
         if (!Topmost) _desktopSettings.AllowClicks = true;
         var hwnd = new WindowInteropHelper(this).Handle;
         if (hwnd == IntPtr.Zero) return;
-        const long transparent = 0x20;
-        var style = GetWindowLongPtr(hwnd,-20).ToInt64();
-        SetWindowLongPtr(hwnd,-20,new IntPtr(_desktopSettings.AllowClicks ? style & ~transparent : style | transparent));
-        SetWindowPos(hwnd,IntPtr.Zero,0,0,0,0,0x37); // refresh styles, without moving, activating or reordering
+        var style = GetWindowLongPtr(hwnd,GwlExStyle).ToInt64();
+        SetWindowLongPtr(hwnd,GwlExStyle,new IntPtr(_desktopSettings.AllowClicks ? style & ~WsExTransparent : style | WsExTransparent));
+        SetWindowPos(hwnd,IntPtr.Zero,0,0,0,0,SwpNoMoveNoSizeNoZOrderNoActivate); // refresh styles without moving or activating
+        if (_trayTopItem != null) _trayTopItem.Checked = _desktopSettings.AlwaysOnTop;
         if (!_desktopSettings.AllowClicks)
         {
             ActionRing.IsOpen = false;
@@ -197,7 +200,8 @@ public partial class PetWindow
             Padding=new Thickness(8),Margin=new Thickness(0,0,0,12)
         });
         panel.Children.Add(PageText("本项目有权许可的新增贡献采用 CC BY-NC-SA 4.0（署名、非商业性使用、相同方式共享）。"));
-        panel.Children.Add(PageText("尚未确认上游大卡猫形象作者采用 CC 协议；本声明不代替上游授权，也不授予鸣潮、上游角色形象或其他第三方内容的权利。第三方组件保留各自许可。"));
+        panel.Children.Add(PageText("已获得上游形象作者授权使用并再创作「大卡猫」形象；作者 B 站空间：https://space.bilibili.com/350988058。"));
+        panel.Children.Add(PageText("《鸣潮》及其角色、商标等权利仍归原权利人，本项目不宣称获得其授权；第三方组件保留各自许可。"));
         _declarationPage=CreateInfoPage("大卡猫 · 声明",panel,420);
         _declarationPage.Closed += (_,_) => _declarationPage=null;
         _declarationPage.Show();

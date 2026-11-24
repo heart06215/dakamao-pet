@@ -45,20 +45,40 @@ public partial class PetWindow
     private FluidRun? _fluidRun;
     private EventHandler? _fluidRendering;
 
+    // 已解码帧在多个循环之间复用。翻身序列内存占用大，单独走 96 帧滚动缓存，
+    // 不进入这里；长序列（>100 帧）仍按需流式解码，避免常驻数百 MB。
+    private readonly Dictionary<string,Dictionary<int,BitmapSource>> _fluidCache = new();
+    private readonly Queue<string> _fluidCacheOrder = new();
+    private readonly object _fluidCacheLock = new();
+    private int _fluidCachedFrames;
+    private const int FluidCacheBudget = 96;
+    private const int FluidCacheSequenceLimit = 100;
+
     private void InitializeFluidPlayback(string modRoot)
     {
         _modRoot=modRoot;
         _fluidRoot=System.IO.Path.Combine(modRoot,"fluid");
         var manifest=System.IO.Path.Combine(_fluidRoot,"manifest.json");
         if(File.Exists(manifest))
-            _fluidSequences=JsonSerializer.Deserialize<Dictionary<string,FluidSequence>>(
-                File.ReadAllText(manifest),new JsonSerializerOptions{PropertyNameCaseInsensitive=true}) ?? new();
+        {
+            try
+            {
+                _fluidSequences=JsonSerializer.Deserialize<Dictionary<string,FluidSequence>>(
+                    File.ReadAllText(manifest),new JsonSerializerOptions{PropertyNameCaseInsensitive=true}) ?? new();
+            }
+            catch(Exception ex) when (ex is IOException or JsonException or UnauthorizedAccessException)
+            {
+                // 配置损坏时退回引擎图集，不要因此让整个程序起不来。
+                App.WriteLog("SMOOTH manifest_invalid "+ex.Message);
+                _fluidSequences=new();
+            }
+        }
         _fluidImage=new Image { Width=500,Height=500,Visibility=Visibility.Hidden,IsHitTestVisible=false };
         RenderOptions.SetBitmapScalingMode(_fluidImage,BitmapScalingMode.HighQuality);
         var layers=new Grid {Width=500,Height=500};
         layers.Children.Add(_main!); layers.Children.Add(_fluidImage);
         PetView.Child=layers;
-        App.WriteLog($"SMOOTH sequences={_fluidSequences.Count} cadence=timeline buffer=24 roll_buffer=96 preroll=28 renderer=decoded_pbgra32");
+        App.WriteLog($"SMOOTH sequences={_fluidSequences.Count} cadence=timeline buffer=24 roll_buffer=96 preroll=28 cache={FluidCacheBudget} renderer=decoded_pbgra32");
     }
 
     private void StopFluidPlayback(bool hide=false)
@@ -110,6 +130,38 @@ public partial class PetWindow
         else StopFluidPlayback(true);
     }
 
+    private Dictionary<int,BitmapSource>? AcquireFrameCache(string key,int count,bool isRoll)
+    {
+        if(isRoll || count>FluidCacheSequenceLimit) return null;
+        lock(_fluidCacheLock)
+        {
+            if(_fluidCache.TryGetValue(key,out var existing)) return existing;
+            var created=new Dictionary<int,BitmapSource>();
+            _fluidCache[key]=created;
+            _fluidCacheOrder.Enqueue(key);
+            while(_fluidCachedFrames>FluidCacheBudget && _fluidCacheOrder.Count>0)
+            {
+                var oldest=_fluidCacheOrder.Dequeue();
+                if(oldest==key) continue; // 当前序列本次播放期间保留
+                if(_fluidCache.Remove(oldest,out var removed))
+                    _fluidCachedFrames-=removed.Count;
+            }
+            return created;
+        }
+    }
+
+    private void CacheDecodedFrame(string key,Dictionary<int,BitmapSource>? cache,int index,BitmapSource bitmap)
+    {
+        if(cache==null) return;
+        lock(_fluidCacheLock)
+        {
+            if(!_fluidCache.TryGetValue(key,out var current) || !ReferenceEquals(current,cache)) return;
+            if(cache.ContainsKey(index)) return;
+            cache[index]=bitmap;
+            _fluidCachedFrames++;
+        }
+    }
+
     private async void StartFluidPlayback(PNGAnimation animation,FluidSequence sequence,Action? after)
     {
         StopFluidPlayback();
@@ -118,45 +170,57 @@ public partial class PetWindow
         run.BufferLimit=isRoll ? 96 : 24;
         var warmCount=Math.Min(sequence.Count,isRoll ? 28 : 4);
         _fluidRun=run;
-        var root=sequence.Source=="pet" ? System.IO.Path.Combine(_modRoot,"pet","dakamao") : _fluidRoot;
-        var directory=System.IO.Path.GetFullPath(System.IO.Path.Combine(root,sequence.Path));
-        if(!directory.StartsWith(System.IO.Path.GetFullPath(root)+System.IO.Path.DirectorySeparatorChar,StringComparison.OrdinalIgnoreCase)
-            || sequence.Count<1 || sequence.FrameMs<1 || sequence.DurationMs<1)
-            throw new InvalidDataException("无效的流畅动画配置");
-        var paths=Directory.GetFiles(directory,"frame_*.png");
-        Array.Sort(paths,StringComparer.Ordinal);
-        if(paths.Length!=sequence.Count) throw new InvalidDataException("动画帧数不匹配："+run.Key);
-        var starts=new int[sequence.Count];
-        if(sequence.FrameDurations!=null)
-        {
-            if(sequence.FrameDurations.Length!=sequence.Count) throw new InvalidDataException("动画时长不匹配："+run.Key);
-            for(var i=1;i<starts.Length;i++) starts[i]=starts[i-1]+sequence.FrameDurations[i-1];
-        }
-        else for(var i=0;i<starts.Length;i++) starts[i]=i*sequence.FrameMs;
-        BitmapSource Decode(int i)
-        {
-            // Decode and convert the pixel buffer on the worker. The render
-            // thread receives ready-to-draw premultiplied pixels, not a lazy
-            // PNG/URI decoder that may do conversion on its first display.
-            using var stream=File.OpenRead(paths[i]);
-            var decoded=BitmapDecoder.Create(stream,BitmapCreateOptions.PreservePixelFormat,BitmapCacheOption.OnLoad).Frames[0];
-            var pixels=new FormatConvertedBitmap(decoded,PixelFormats.Pbgra32,null,0);
-            var stride=pixels.PixelWidth*4;
-            var data=new byte[stride*pixels.PixelHeight]; pixels.CopyPixels(data,stride,0);
-            var bitmap=BitmapSource.Create(pixels.PixelWidth,pixels.PixelHeight,96,96,PixelFormats.Pbgra32,null,data,stride);
-            bitmap.Freeze();
-            return bitmap;
-        }
         try
         {
+            var root=sequence.Source=="pet" ? System.IO.Path.Combine(_modRoot,"pet","dakamao") : _fluidRoot;
+            var directory=System.IO.Path.GetFullPath(System.IO.Path.Combine(root,sequence.Path));
+            if(!directory.StartsWith(System.IO.Path.GetFullPath(root)+System.IO.Path.DirectorySeparatorChar,StringComparison.OrdinalIgnoreCase)
+                || sequence.Count<1 || sequence.FrameMs<1 || sequence.DurationMs<1)
+                throw new InvalidDataException("无效的流畅动画配置");
+            var paths=Directory.GetFiles(directory,"frame_*.png");
+            Array.Sort(paths,StringComparer.Ordinal);
+            if(paths.Length!=sequence.Count) throw new InvalidDataException("动画帧数不匹配："+run.Key);
+            var starts=new int[sequence.Count];
+            if(sequence.FrameDurations!=null)
+            {
+                if(sequence.FrameDurations.Length!=sequence.Count) throw new InvalidDataException("动画时长不匹配："+run.Key);
+                for(var i=1;i<starts.Length;i++) starts[i]=starts[i-1]+sequence.FrameDurations[i-1];
+            }
+            else for(var i=0;i<starts.Length;i++) starts[i]=i*sequence.FrameMs;
+            BitmapSource Decode(int i)
+            {
+                // Decode and convert the pixel buffer on the worker. The render
+                // thread receives ready-to-draw premultiplied pixels, not a lazy
+                // PNG/URI decoder that may do conversion on its first display.
+                using var stream=File.OpenRead(paths[i]);
+                var decoded=BitmapDecoder.Create(stream,BitmapCreateOptions.PreservePixelFormat,BitmapCacheOption.OnLoad).Frames[0];
+                var pixels=new FormatConvertedBitmap(decoded,PixelFormats.Pbgra32,null,0);
+                var stride=pixels.PixelWidth*4;
+                var data=new byte[stride*pixels.PixelHeight]; pixels.CopyPixels(data,stride,0);
+                var bitmap=BitmapSource.Create(pixels.PixelWidth,pixels.PixelHeight,96,96,PixelFormats.Pbgra32,null,data,stride);
+                bitmap.Freeze();
+                return bitmap;
+            }
+
+            var cache=AcquireFrameCache(run.Key,sequence.Count,isRoll);
+            if(cache!=null)
+            {
+                lock(_fluidCacheLock)
+                    foreach(var pair in cache) run.Frames[pair.Key]=pair.Value;
+            }
+            var pending=new List<int>(warmCount+1);
+            for(var i=0;i<warmCount;i++)
+                if(!run.Frames.ContainsKey(i)) pending.Add(i);
+            if(!run.Frames.ContainsKey(sequence.Count-1)) pending.Add(sequence.Count-1);
             await Task.Run(()=>
             {
-                for(var i=0;i<warmCount;i++)
+                foreach(var index in pending)
                 {
                     run.Cancel.Token.ThrowIfCancellationRequested();
-                    run.Frames[i]=Decode(i);
+                    var bitmap=Decode(index);
+                    run.Frames[index]=bitmap;
+                    CacheDecodedFrame(run.Key,cache,index,bitmap);
                 }
-                run.Frames[sequence.Count-1]=Decode(sequence.Count-1);
             },run.Cancel.Token);
             if(_fluidRun!=run || run.Cancel.IsCancellationRequested) return;
             _fluidImage!.Source=run.Frames[0];
@@ -191,7 +255,7 @@ public partial class PetWindow
                 else misses++;
                 if(elapsed>=sequence.DurationMs)
                 {
-                    _fluidImage.Source=run.Frames[sequence.Count-1];
+                    if(run.Frames.TryGetValue(sequence.Count-1,out var lastFrame)) _fluidImage.Source=lastFrame;
                     StopFluidPlayback();
                     App.WriteLog($"SMOOTH_END {graph.Name}/{graph.Animat} shown={shown} misses={misses} elapsed={elapsed:F0} render_fps={ticks*1000/elapsed:F1} max_gap_ms={maxGap:F1}");
                     if(after==null && (graph.Type==GraphType.Default || animation.IsLoop))
@@ -200,7 +264,7 @@ public partial class PetWindow
                 }
             };
             CompositionTarget.Rendering+=_fluidRendering;
-            App.WriteLog($"SMOOTH_PLAY {graph.Name}/{graph.Animat} frames={sequence.Count} duration={sequence.DurationMs}");
+            App.WriteLog($"SMOOTH_PLAY {graph.Name}/{graph.Animat} frames={sequence.Count} duration={sequence.DurationMs} cache={(cache!=null ? "on" : "off")}");
             await Task.Run(async ()=>
             {
                 var index=warmCount;
@@ -213,7 +277,10 @@ public partial class PetWindow
                     index=Math.Max(index,requested);
                     if(index>=sequence.Count-1) break;
                     if(run.Frames.Count>=run.BufferLimit) { await Task.Delay(4,run.Cancel.Token); continue; }
-                    run.Frames[index]=Decode(index); index++;
+                    var bitmap=Decode(index);
+                    run.Frames[index]=bitmap;
+                    CacheDecodedFrame(run.Key,cache,index,bitmap);
+                    index++;
                 }
             },run.Cancel.Token);
         }
