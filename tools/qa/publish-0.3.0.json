@@ -1,14 +1,14 @@
 {
     "Version":  "0.3.0",
     "Root":  "D:\\code_project\\大卡猫\\release\\DakamaoPet-0.3.0-win-x64.exe",
-    "SHA256":  "F423CAD5E9D746C91235BE28930A42A42C3AF3DB2089CB4ADA1F80B6DDF84028",
+    "SHA256":  "B818CC085BD8ED43BA370E26B75D0032284185F5082FDDAF02ADE33728806A00",
     "ReleaseMatches":  true,
-    "Length":  575661388,
+    "Length":  575661410,
     "AssetMode":  "dedup",
     "AssetFiles":  5498,
     "UniqueAssetFiles":  3026,
     "SavedBytes":  418860741,
     "PoseRevision":  "v26_whole_body",
-    "Commit":  "49500a6",
-    "PublishedAt":  "2026-11-24T19:34:35.9193567+08:00"
+    "Commit":  "58d4022",
+    "PublishedAt":  "2026-11-24T19:47:39.6079210+08:00"
 }

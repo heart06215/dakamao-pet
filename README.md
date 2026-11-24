@@ -44,9 +44,9 @@
 
 从 [Releases v0.3.0](https://github.com/heart06215/dakamao-pet/releases/tag/v0.3.0) 下载 [`DakamaoPet-0.3.0-win-x64.exe`](https://github.com/heart06215/dakamao-pet/releases/download/v0.3.0/DakamaoPet-0.3.0-win-x64.exe)（即 `大卡猫.exe`，549 MB），双击即可运行。单文件自包含：.NET 8 运行时与全部动画素材都打包在 exe 内部，不需要安装任何环境。
 
-SHA256：`F423CAD5E9D746C91235BE28930A42A42C3AF3DB2089CB4ADA1F80B6DDF84028`
+SHA256：`B818CC085BD8ED43BA370E26B75D0032284185F5082FDDAF02ADE33728806A00`
 
-首次启动会把去重素材还原到 `%LOCALAPPDATA%\DakamaoPet\assets\<版本>`（唯一内容约 489 MB，同一磁盘上使用硬链接，不额外占用等量空间）；之后启动直接复用。
+首次启动会把去重素材还原到 `%LOCALAPPDATA%\DakamaoPet\assets\<版本>`（唯一内容约 504 MB，同一磁盘上使用硬链接，不额外占用等量空间）；之后启动直接复用。
 
 ## 构建
 
