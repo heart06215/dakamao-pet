@@ -98,7 +98,8 @@ internal static class AssetStore
             {
                 if (string.Equals(Path.GetFileName(directory), current, StringComparison.OrdinalIgnoreCase))
                     continue;
-                if (!File.Exists(Path.Combine(directory, ".ready")))
+                var isStaleTemp = Path.GetFileName(directory).Contains(".tmp-", StringComparison.OrdinalIgnoreCase);
+                if (!isStaleTemp && !File.Exists(Path.Combine(directory, ".ready")))
                     continue;
                 try { Directory.Delete(directory, true); }
                 catch (IOException) { }

@@ -100,6 +100,8 @@ public partial class PetWindow
 
     private void MoveToPrimaryScreen()
     {
+        if (_walking)
+            CancelWalk();
         var area = SystemParameters.WorkArea;
         Left = Math.Max(area.Left, area.Right - ActualWidth - 24);
         Top = Math.Max(area.Top, area.Bottom - ActualHeight);
